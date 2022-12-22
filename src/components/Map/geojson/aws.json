@@ -1,0 +1,457 @@
+[
+  {
+    "city": "Washington, DC",
+    "coordinates": [-77.0365427, 38.8950368],
+    "type": "aws"
+  },
+  {
+    "city": "Chicago, IL",
+    "coordinates": [-87.6244212, 41.8755616],
+    "type": "aws"
+  },
+  {
+    "city": "New York, NY",
+    "coordinates": [-74.0060152, 40.7127281],
+    "type": "aws"
+  },
+  {
+    "city": "Atlanta, GA",
+    "coordinates": [-84.3902644, 33.7489924],
+    "type": "aws"
+  },
+  {
+    "city": "Los Angeles, CA",
+    "coordinates": [-118.242766, 34.0536909],
+    "type": "aws"
+  },
+  {
+    "city": "Miami, FL",
+    "coordinates": [-80.19362, 25.7741728],
+    "type": "aws"
+  },
+  {
+    "city": "Dallas-Fort Worth, TX",
+    "coordinates": [-97.0465220537124, 32.89651945],
+    "type": "aws"
+  },
+  {
+    "city": "Houston, TX",
+    "coordinates": [-95.3676974, 29.7589382],
+    "type": "aws"
+  },
+  {
+    "city": "San Francisco, CA",
+    "coordinates": [-122.419906, 37.7790262],
+    "type": "aws"
+  },
+  {
+    "city": "Boston, MA",
+    "coordinates": [-71.060511, 42.3554334],
+    "type": "aws"
+  },
+  {
+    "city": "Denver, CO",
+    "coordinates": [-104.984862, 39.7392364],
+    "type": "aws"
+  },
+  {
+    "city": "Portland, OR",
+    "coordinates": [-122.674194, 45.5202471],
+    "type": "aws"
+  },
+  {
+    "city": "Seattle, WA",
+    "coordinates": [-122.330062, 47.6038321],
+    "type": "aws"
+  },
+  {
+    "city": "Toronto, Canada",
+    "coordinates": [-79.3839347, 43.6534817],
+    "type": "aws"
+  },
+  {
+    "city": "Minneapolis, MN",
+    "coordinates": [-93.2654692, 44.9772995],
+    "type": "aws"
+  },
+  {
+    "city": "Phoenix, AZ",
+    "coordinates": [-112.074141, 33.4484367],
+    "type": "aws"
+  },
+  {
+    "city": "Querétaro, Mexico",
+    "coordinates": [-100.3902245, 20.5927744],
+    "type": "aws"
+  },
+  {
+    "city": "Montréal, Canada",
+    "coordinates": [-73.5698065, 45.5031824],
+    "type": "aws"
+  },
+  {
+    "city": "Philadelphia, PA",
+    "coordinates": [-75.1635262, 39.9527237],
+    "type": "aws"
+  },
+  {
+    "city": "Salt Lake City, UT",
+    "coordinates": [-111.8867975, 40.7596198],
+    "type": "aws"
+  },
+  {
+    "city": "Vancouver, Canada",
+    "coordinates": [-123.113952, 49.2608724],
+    "type": "aws"
+  },
+  {
+    "city": "Nashville, TN",
+    "coordinates": [-86.7742984, 36.1622767],
+    "type": "aws"
+  },
+  {
+    "city": "Detroit, MI",
+    "coordinates": [-83.0466403, 42.3315509],
+    "type": "aws"
+  },
+  {
+    "city": "Frankfurt am Main, Germany",
+    "coordinates": [8.6820917, 50.1106444],
+    "type": "aws"
+  },
+  {
+    "city": "London, UK",
+    "coordinates": [-0.1276474, 51.5073219],
+    "type": "aws"
+  },
+  {
+    "city": "Paris, France",
+    "coordinates": [2.3200410217200766, 48.8588897],
+    "type": "aws"
+  },
+  {
+    "city": "Milan, Italy",
+    "coordinates": [9.1896346, 45.4641943],
+    "type": "aws"
+  },
+  {
+    "city": "Rome, Italy",
+    "coordinates": [12.4829321, 41.8933203],
+    "type": "aws"
+  },
+  {
+    "city": "Berlin, Germany",
+    "coordinates": [13.3888599, 52.5170365],
+    "type": "aws"
+  },
+  {
+    "city": "Madrid, Spain",
+    "coordinates": [-3.7035825, 40.4167047],
+    "type": "aws"
+  },
+  {
+    "city": "Marseille, France",
+    "coordinates": [5.3699525, 43.2961743],
+    "type": "aws"
+  },
+  {
+    "city": "Amsterdam, The Netherlands",
+    "coordinates": [4.8936041, 52.3727598],
+    "type": "aws"
+  },
+  {
+    "city": "Düsseldorf, Germany",
+    "coordinates": [6.7763137, 51.2254018],
+    "type": "aws"
+  },
+  {
+    "city": "Hamburg, Germany",
+    "coordinates": [10.000654, 53.550341],
+    "type": "aws"
+  },
+  {
+    "city": "Manchester, UK",
+    "coordinates": [-2.2451148, 53.4794892],
+    "type": "aws"
+  },
+  {
+    "city": "Munich, Germany",
+    "coordinates": [11.5753822, 48.1371079],
+    "type": "aws"
+  },
+  {
+    "city": "Vienna, Austria",
+    "coordinates": [16.3725042, 48.2083537],
+    "type": "aws"
+  },
+  {
+    "city": "Stockholm, Sweden",
+    "coordinates": [18.0710935, 59.3251172],
+    "type": "aws"
+  },
+  {
+    "city": "Copenhagen, Denmark",
+    "coordinates": [12.5700724, 55.6867243],
+    "type": "aws"
+  },
+  {
+    "city": "Dublin, Ireland",
+    "coordinates": [-6.2602964, 53.3498006],
+    "type": "aws"
+  },
+  {
+    "city": "Helsinki, Finland",
+    "coordinates": [24.9427473, 60.1674881],
+    "type": "aws"
+  },
+  {
+    "city": "Athens, Greece",
+    "coordinates": [23.7283052, 37.9839412],
+    "type": "aws"
+  },
+  {
+    "city": "Brussels, Belgium",
+    "coordinates": [4.351697, 50.8465573],
+    "type": "aws"
+  },
+  {
+    "city": "Budapest, Hungary",
+    "coordinates": [19.0403594, 47.4979937],
+    "type": "aws"
+  },
+  {
+    "city": "Lisbon, Portugal",
+    "coordinates": [-9.1365919, 38.7077507],
+    "type": "aws"
+  },
+  {
+    "city": "Oslo, Norway",
+    "coordinates": [10.7389701, 59.9133301],
+    "type": "aws"
+  },
+  {
+    "city": "Bucharest, Romania",
+    "coordinates": [26.1027202, 44.4361414],
+    "type": "aws"
+  },
+  {
+    "city": "Palermo, Italy",
+    "coordinates": [13.3524434, 38.1112268],
+    "type": "aws"
+  },
+  {
+    "city": "Prague, Czech",
+    "coordinates": [14.4156772, 50.0864234],
+    "type": "aws"
+  },
+  {
+    "city": "Sofia, Bulgaria",
+    "coordinates": [23.3217359, 42.6977028],
+    "type": "aws"
+  },
+  {
+    "city": "Warsaw, Poland",
+    "coordinates": [21.071432235636493, 52.2337172],
+    "type": "aws"
+  },
+  {
+    "city": "Zagreb, Croatia",
+    "coordinates": [15.962231476593626, 45.84264135],
+    "type": "aws"
+  },
+  {
+    "city": "Zurich, Switzerland",
+    "coordinates": [8.5410422, 47.3744489],
+    "type": "aws"
+  },
+  {
+    "city": "Tokyo, Japan",
+    "coordinates": [139.7594549, 35.6828387],
+    "type": "aws"
+  },
+  {
+    "city": "New Delhi, India",
+    "coordinates": [77.2090057, 28.6138954],
+    "type": "aws"
+  },
+  {
+    "city": "Seoul, Korea",
+    "coordinates": [126.9782914, 37.5666791],
+    "type": "aws"
+  },
+  {
+    "city": "Chennai, India",
+    "coordinates": [80.270186, 13.0836939],
+    "type": "aws"
+  },
+  {
+    "city": "Singapore",
+    "coordinates": [103.8194992, 1.357107],
+    "type": "aws"
+  },
+  {
+    "city": "Osaka, Japan",
+    "coordinates": [135.490357, 34.6198813],
+    "type": "aws"
+  },
+  {
+    "city": "Mumbai, India",
+    "coordinates": [72.878176, 19.0785451],
+    "type": "aws"
+  },
+  {
+    "city": "Bangalore, India",
+    "coordinates": [77.590082, 12.9767936],
+    "type": "aws"
+  },
+  {
+    "city": "Hyderabad, India",
+    "coordinates": [78.4740613, 17.360589],
+    "type": "aws"
+  },
+  {
+    "city": "Taipei, Taiwan",
+    "coordinates": [121.5636796, 25.0375198],
+    "type": "aws"
+  },
+  {
+    "city": "Bangkok, Thailand",
+    "coordinates": [100.4935089, 13.7524938],
+    "type": "aws"
+  },
+  {
+    "city": "Kolkata, India",
+    "coordinates": [88.3638815, 22.5726723],
+    "type": "aws"
+  },
+  {
+    "city": "Jakarta, Indonesia",
+    "coordinates": [106.827183, -6.1753942],
+    "type": "aws"
+  },
+  {
+    "city": "Kuala Lumpur, Malaysia",
+    "coordinates": [101.6942371, 3.1516964],
+    "type": "aws"
+  },
+  {
+    "city": "Manila, Philippines",
+    "coordinates": [120.9782618, 14.5948914],
+    "type": "aws"
+  },
+  {
+    "city": "Hanoi, Vietnam",
+    "coordinates": [105.8544441, 21.0294498],
+    "type": "aws"
+  },
+  {
+    "city": "Ho Chi Minh, Vietnam",
+    "coordinates": [106.7012016, 10.776325],
+    "type": "aws"
+  },
+  {
+    "city": "Sydney, Australia",
+    "coordinates": [151.2082848, -33.8698439],
+    "type": "aws"
+  },
+  {
+    "city": "Auckland, New Zealand",
+    "coordinates": [174.7631803, -36.852095],
+    "type": "aws"
+  },
+  {
+    "city": "Melbourne, Australia",
+    "coordinates": [144.9631608, -37.8142176],
+    "type": "aws"
+  },
+  {
+    "city": "Perth, Australia",
+    "coordinates": [115.8605801, -31.9558964],
+    "type": "aws"
+  },
+  {
+    "city": "São Paulo, Brazil",
+    "coordinates": [-46.6333824, -23.5506507],
+    "type": "aws"
+  },
+  {
+    "city": "Rio De Janeiro, Brazil",
+    "coordinates": [-43.2093727, -22.9110137],
+    "type": "aws"
+  },
+  {
+    "city": "Bogota, Colombia",
+    "coordinates": [-74.0836453, 4.6534649],
+    "type": "aws"
+  },
+  {
+    "city": "Buenos Aires, Argentina",
+    "coordinates": [-58.4370894, -34.6075682],
+    "type": "aws"
+  },
+  {
+    "city": "Santiago, Chile",
+    "coordinates": [-70.6504502, -33.4377756],
+    "type": "aws"
+  },
+  {
+    "city": "el Aviv, Israel",
+    "coordinates": [34.768590208295045, 32.07648535],
+    "type": "aws"
+  },
+  {
+    "city": "Manama, Bahrain",
+    "coordinates": [50.5822436, 26.2235041],
+    "type": "aws"
+  },
+  {
+    "city": "Dubai, UAE",
+    "coordinates": [55.18853865430702, 25.074282349999997],
+    "type": "aws"
+  },
+  {
+    "city": "Fujairah, UAE",
+    "coordinates": [56.3355085, 25.1244604],
+    "type": "aws"
+  },
+  {
+    "city": "Cape Town, South Africa",
+    "coordinates": [18.417396, -33.928992],
+    "type": "aws"
+  },
+  {
+    "city": "Johannesburg, South Africa",
+    "coordinates": [28.049722, -26.205],
+    "type": "aws"
+  },
+  {
+    "city": "Nairobi, Kenya",
+    "coordinates": [36.8172449, -1.2832533],
+    "type": "aws"
+  },
+  {
+    "city": "Shanghai, China",
+    "coordinates": [121.4692071, 31.2322758],
+    "type": "aws"
+  },
+  {
+    "city": "Shenzhen, China",
+    "coordinates": [114.0545429, 22.5445741],
+    "type": "aws"
+  },
+  {
+    "city": "Zhongwei, China",
+    "coordinates": [105.1928783, 37.499723],
+    "type": "aws"
+  },
+  {
+    "city": "Beijing, China",
+    "coordinates": [116.3912757, 39.906217],
+    "type": "aws"
+  },
+  {
+    "city": "Hong Kong, China",
+    "coordinates": [114.1628131, 22.2793278],
+    "type": "aws"
+  }
+]

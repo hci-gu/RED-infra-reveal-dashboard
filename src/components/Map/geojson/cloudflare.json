@@ -1,0 +1,1437 @@
+[
+  {
+    "city": "Ashburn, US",
+    "coordinates": [-77.46964646557657, 39.030019100000004],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Atlanta, US",
+    "coordinates": [-84.3902644, 33.7489924],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Boston, US",
+    "coordinates": [-71.060511, 42.3554334],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Buffalo, US",
+    "coordinates": [-78.8783922, 42.8867166],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Calgary, CA",
+    "coordinates": [-114.065465, 51.0460954],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Charlotte, US",
+    "coordinates": [-80.8430827, 35.2272086],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Chicago, US",
+    "coordinates": [-87.6244212, 41.8755616],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Columbus, US",
+    "coordinates": [-83.0007065, 39.9622601],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Dallas, US",
+    "coordinates": [-96.7968559, 32.7762719],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Denver, US",
+    "coordinates": [-104.984862, 39.7392364],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Detroit, US",
+    "coordinates": [-83.0466403, 42.3315509],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Honolulu, US",
+    "coordinates": [-157.855676, 21.304547],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Houston, US",
+    "coordinates": [-95.3676974, 29.7589382],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Indianapolis, US",
+    "coordinates": [-86.1583502, 39.7683331],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Jacksonville, US",
+    "coordinates": [-81.655651, 30.3321838],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Kansas City, US",
+    "coordinates": [-94.5781416, 39.100105],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Las Vegas, US",
+    "coordinates": [-115.148516, 36.1672559],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Los Angeles, US",
+    "coordinates": [-118.242766, 34.0536909],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Mcallen, US",
+    "coordinates": [-98.2300605, 26.204114],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Memphis, US",
+    "coordinates": [-89.9668758, 35.1335022],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Miami, US",
+    "coordinates": [-80.19362, 25.7741728],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Minneapolis, US",
+    "coordinates": [-93.2654692, 44.9772995],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Montgomery, US",
+    "coordinates": [-86.3006485, 32.3669656],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Montréal, CA",
+    "coordinates": [-73.5698065, 45.5031824],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Nashville, US",
+    "coordinates": [-86.7742984, 36.1622767],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Newark, US",
+    "coordinates": [-74.1723667, 40.735657],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Norfolk, US",
+    "coordinates": [-76.2602336, 36.8968052],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Omaha, US",
+    "coordinates": [-95.9383758, 41.2587459],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Ottawa, CA",
+    "coordinates": [-75.6901106, 45.4208777],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Philadelphia, US",
+    "coordinates": [-75.1635262, 39.9527237],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Phoenix, US",
+    "coordinates": [-112.074141, 33.4484367],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Pittsburgh, US",
+    "coordinates": [-79.9900861, 40.4416941],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Portland, US",
+    "coordinates": [-122.674194, 45.5202471],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Richmond, US",
+    "coordinates": [-77.43428, 37.5385087],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Sacramento, US",
+    "coordinates": [-121.493895, 38.5810606],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Salt Lake City, US",
+    "coordinates": [-111.8867975, 40.7596198],
+    "type": "cloudflare"
+  },
+  {
+    "city": "San Diego, US",
+    "coordinates": [-117.1627728, 32.7174202],
+    "type": "cloudflare"
+  },
+  {
+    "city": "San Jose, US",
+    "coordinates": [-121.890591, 37.3361663],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Saskatoon, CA",
+    "coordinates": [-106.660767, 52.131802],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Seattle, US",
+    "coordinates": [-122.330062, 47.6038321],
+    "type": "cloudflare"
+  },
+  {
+    "city": "St. Louis, US",
+    "coordinates": [-90.2428756, 38.6319657],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Tallahassee, US",
+    "coordinates": [-84.2809332, 30.4380832],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Tampa, US",
+    "coordinates": [-82.458444, 27.9477595],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Toronto, CA",
+    "coordinates": [-79.3839347, 43.6534817],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Vancouver, CA",
+    "coordinates": [-123.113952, 49.2608724],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Winnipeg, CA",
+    "coordinates": [-97.1384584, 49.8955367],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Americana, BR",
+    "coordinates": [-47.3306032, -22.7392463],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Arica, CL",
+    "coordinates": [-70.3211394, -18.4785288],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Asuncion, PY",
+    "coordinates": [-57.6343814, -25.2800459],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Belo Horizonte, BR",
+    "coordinates": [-43.9450948, -19.9227318],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Belém, BR",
+    "coordinates": [-48.4682453, -1.45056],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Blumenau, BR",
+    "coordinates": [-49.0658025, -26.9195567],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Bogota, CO",
+    "coordinates": [-74.0836453, 4.6534649],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Brasília, BR",
+    "coordinates": [-53.2, -10.3333333],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Buenos Aires, AR",
+    "coordinates": [-58.4370894, -34.6075682],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Campinas, BR",
+    "coordinates": [-47.06083, -22.90556],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Caçador, BR",
+    "coordinates": [-51.0120041, -26.77567],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Cordoba, AR",
+    "coordinates": [-64.183319, -31.4173391],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Cuiabá, BR",
+    "coordinates": [-56.0991301, -15.5986686],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Curitiba, BR",
+    "coordinates": [-49.2712724, -25.4295963],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Florianópolis, BR",
+    "coordinates": [-48.5496098, -27.5973002],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Fortaleza, BR",
+    "coordinates": [-38.5217989, -3.7304512],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Georgetown, GY",
+    "coordinates": [-58.1624465, 6.8137426],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Goiânia, BR",
+    "coordinates": [-49.2532691, -16.680882],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Guatemala City, GT",
+    "coordinates": [-90.5185188, 14.6222328],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Guayaquil, EC",
+    "coordinates": [-79.8868741, -2.1900563],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Itajaí, BR",
+    "coordinates": [-48.6552979, -26.9046787],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Joinville, BR",
+    "coordinates": [-48.8486726, -26.3044898],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Juazeiro do Norte, BR",
+    "coordinates": [-39.3153336, -7.2153453],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Lima, PE",
+    "coordinates": [-77.0365256, -12.0621065],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Manaus, BR",
+    "coordinates": [-59.9825041, -3.1316333],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Medellín, CO",
+    "coordinates": [-75.573553, 6.2443382],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Mexico City, MX",
+    "coordinates": [-99.1331785, 19.4326296],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Neuquen, AR",
+    "coordinates": [-69.832275, -38.3695057],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Panama City, PA",
+    "coordinates": [-79.5341802, 8.9714493],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Paramaribo, SR",
+    "coordinates": [-55.1703941, 5.8247628],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Port-Au-Prince, HT",
+    "coordinates": [-72.3395928, 18.547327],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Porto Alegre, BR",
+    "coordinates": [-51.2303767, -30.0324999],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Queretaro, MX",
+    "coordinates": [-100.3902245, 20.5927744],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Quito, EC",
+    "coordinates": [-78.5123274, -0.2201641],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Ribeirão Preto, BR",
+    "coordinates": [-47.8066671, -21.178333],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Rio de Janeiro, BR",
+    "coordinates": [-43.2093727, -22.9110137],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Salvador, BR",
+    "coordinates": [-38.4812772, -12.9822499],
+    "type": "cloudflare"
+  },
+  {
+    "city": "San José, CR",
+    "coordinates": [-84.0795782, 9.9325427],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Sorocaba, BR",
+    "coordinates": [-47.4582864, -23.5003451],
+    "type": "cloudflare"
+  },
+  {
+    "city": "St. George's, GD",
+    "coordinates": [-61.751805, 12.0535331],
+    "type": "cloudflare"
+  },
+  {
+    "city": "São José do Rio Preto, BR",
+    "coordinates": [-49.3804212, -20.8125851],
+    "type": "cloudflare"
+  },
+  {
+    "city": "São Paulo, BR",
+    "coordinates": [-46.6333824, -23.5506507],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Tegucigalpa, HN",
+    "coordinates": [-87.2040052, 14.1057433],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Uberlândia, BR",
+    "coordinates": [-48.2767837, -18.9188041],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Valparaíso, CL",
+    "coordinates": [-71.6196749, -33.0458456],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Willemstad, CW",
+    "coordinates": [-68.9370850600204, 12.110006949999999],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Accra, GH",
+    "coordinates": [-0.2012376, 5.5571096],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Algiers, DZ",
+    "coordinates": [3.0601882, 36.7753606],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Antananarivo, MG",
+    "coordinates": [47.5255809, -18.9100122],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Cape Town, ZA",
+    "coordinates": [18.417396, -33.928992],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Casablanca, MA",
+    "coordinates": [-7.6187768, 33.5950627],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Dakar, SN",
+    "coordinates": [-17.447938, 14.693425],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Dar Es Salaam, TZ",
+    "coordinates": [39.2803583, -6.8160837],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Djibouti, DJ",
+    "coordinates": [42.8453061, 11.8145966],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Durban, ZA",
+    "coordinates": [31.009909, -29.861825],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Gaborone, BW",
+    "coordinates": [25.9088474, -24.6581357],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Harare, ZW",
+    "coordinates": [31.045686, -17.831773],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Johannesburg, ZA",
+    "coordinates": [28.049722, -26.205],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Kigali, RW",
+    "coordinates": [30.061507, -1.950851],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Lagos, NG",
+    "coordinates": [3.3941795, 6.4550575],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Luanda, AO",
+    "coordinates": [13.2439512, -8.8272699],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Maputo, MZ",
+    "coordinates": [32.56745, -25.966213],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Mombasa, KE",
+    "coordinates": [39.667169, -4.05052],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Monrovia, LR",
+    "coordinates": [-10.797788, 6.328034],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Nairobi, KE",
+    "coordinates": [36.8172449, -1.2832533],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Port Louis, MU",
+    "coordinates": [57.5028044, -20.1624522],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Reunion, FR",
+    "coordinates": [55.536480112992315, -21.130737949999997],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Tunis, TN",
+    "coordinates": [9.400138, 33.8439408],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Amsterdam, NL",
+    "coordinates": [4.8936041, 52.3727598],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Athens, GR",
+    "coordinates": [23.7283052, 37.9839412],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Barcelona, ES",
+    "coordinates": [2.1774322, 41.3828939],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Belgrade, RS",
+    "coordinates": [20.4568974, 44.8178131],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Berlin, DE",
+    "coordinates": [13.3888599, 52.5170365],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Brussels, BE",
+    "coordinates": [4.351697, 50.8465573],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Bucharest, RO",
+    "coordinates": [26.1027202, 44.4361414],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Budapest, HU",
+    "coordinates": [19.0403594, 47.4979937],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Chișinău, MD",
+    "coordinates": [28.8322923, 47.0245117],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Copenhagen, DK",
+    "coordinates": [12.5700724, 55.6867243],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Cork, IE",
+    "coordinates": [-8.4654674, 51.897077],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Dublin, IE",
+    "coordinates": [-6.2602964, 53.3498006],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Düsseldorf, DE",
+    "coordinates": [6.7763137, 51.2254018],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Edinburgh, GB",
+    "coordinates": [-3.1883749, 55.9533456],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Ekaterinburg, RU",
+    "coordinates": [60.60825, 56.839104],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Frankfurt, DE",
+    "coordinates": [8.6820917, 50.1106444],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Geneva, CH",
+    "coordinates": [6.1466014, 46.2017559],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Gothenburg, SE",
+    "coordinates": [11.9670171, 57.7072326],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Hamburg, DE",
+    "coordinates": [10.000654, 53.550341],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Helsinki, FI",
+    "coordinates": [24.9427473, 60.1674881],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Istanbul, TR",
+    "coordinates": [28.9662187, 41.0091982],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Khabarovsk, RU",
+    "coordinates": [136.121524, 51.6312684],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Krasnoyarsk, RU",
+    "coordinates": [97.0979974, 63.3233807],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Kyiv, UA",
+    "coordinates": [30.5241361, 50.4500336],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Lisbon, PT",
+    "coordinates": [-9.1365919, 38.7077507],
+    "type": "cloudflare"
+  },
+  {
+    "city": "London, GB",
+    "coordinates": [-0.1276474, 51.5073219],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Luxembourg City, LU",
+    "coordinates": [6.129799, 49.6112768],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Madrid, ES",
+    "coordinates": [-3.7035825, 40.4167047],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Manchester, GB",
+    "coordinates": [-2.2451148, 53.4794892],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Marseille, FR",
+    "coordinates": [5.3699525, 43.2961743],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Milan, IT",
+    "coordinates": [9.1896346, 45.4641943],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Minsk, BY",
+    "coordinates": [27.5618225, 53.9024716],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Moscow, RU",
+    "coordinates": [37.6174943, 55.7504461],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Munich, DE",
+    "coordinates": [11.5753822, 48.1371079],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Nicosia, CY",
+    "coordinates": [33.3638568, 35.1748976],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Oslo, NO",
+    "coordinates": [10.7389701, 59.9133301],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Palermo, IT",
+    "coordinates": [13.3524434, 38.1112268],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Paris, FR",
+    "coordinates": [2.3200410217200766, 48.8588897],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Prague, CZ",
+    "coordinates": [14.446459273258009, 50.0596288],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Reykjavík, IS",
+    "coordinates": [-21.9422367, 64.145981],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Riga, LV",
+    "coordinates": [24.1051846, 56.9493977],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Rome, IT",
+    "coordinates": [12.4829321, 41.8933203],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Sofia, BG",
+    "coordinates": [23.3217359, 42.6977028],
+    "type": "cloudflare"
+  },
+  {
+    "city": "St. Petersburg, RU",
+    "coordinates": [30.316229, 59.938732],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Stockholm, SE",
+    "coordinates": [18.0710935, 59.3251172],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Tallinn, EE",
+    "coordinates": [24.7453688, 59.4372155],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Thessaloniki, GR",
+    "coordinates": [22.9352716, 40.6403167],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Vienna, AT",
+    "coordinates": [16.3725042, 48.2083537],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Vilnius, LT",
+    "coordinates": [25.2829111, 54.6870458],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Warsaw, PL",
+    "coordinates": [21.071432235636493, 52.2337172],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Zagreb, HR",
+    "coordinates": [15.962231476593626, 45.84264135],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Zürich, CH",
+    "coordinates": [8.5410422, 47.3744489],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Amman, JO",
+    "coordinates": [35.9239625, 31.9515694],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Baghdad, IQ",
+    "coordinates": [44.3872213, 33.3061701],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Basra, IQ",
+    "coordinates": [47.8090981, 30.4952371],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Beirut, LB",
+    "coordinates": [35.47843, 33.8959203],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Dammam, SA",
+    "coordinates": [50.1039991, 26.4367824],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Doha, QA",
+    "coordinates": [51.5264162, 25.2856329],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Dubai, AE",
+    "coordinates": [55.18853865430702, 25.074282349999997],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Erbil, IQ",
+    "coordinates": [44.0094294, 36.1911653],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Haifa, IL",
+    "coordinates": [34.9983856, 32.8191218],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Jeddah, SA",
+    "coordinates": [39.1653612, 21.5810088],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Kuwait City, KW",
+    "coordinates": [47.9734174, 29.3796532],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Manama, BH",
+    "coordinates": [50.5822436, 26.2235041],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Muscat, OM",
+    "coordinates": [58.5912467, 23.61515],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Najaf, IQ",
+    "coordinates": [44.3299926, 32.0010227],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Ramallah",
+    "coordinates": [35.1952255, 31.9030543],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Riyadh, SA",
+    "coordinates": [46.7160104, 24.638916],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Tel Aviv, IL",
+    "coordinates": [34.7818064, 32.0852997],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Ahmedabad, IN",
+    "coordinates": [72.5797068, 23.0216238],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Almaty, KZ",
+    "coordinates": [76.9457275, 43.2363924],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Astara, AZ",
+    "coordinates": [48.82832234412608, 38.51559775],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Baku, AZ",
+    "coordinates": [49.8328009, 40.3755885],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Bandar Seri Begawan, BN",
+    "coordinates": [114.9417574, 4.8895453],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Bangkok, TH",
+    "coordinates": [100.4935089, 13.7524938],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Bengaluru, IN",
+    "coordinates": [77.590082, 12.9767936],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Bhubaneshwar, IN",
+    "coordinates": [85.8394521, 20.2602964],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Cagayan, PH",
+    "coordinates": [121.833333, 18],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Cebu, PH",
+    "coordinates": [123.9020773, 10.2931062],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Chandigarh, IN",
+    "coordinates": [76.78414567016054, 30.72984395],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Chennai, IN",
+    "coordinates": [80.270186, 13.0836939],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Chiang Mai, TH",
+    "coordinates": [98.9858802, 18.7882778],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Chittagong, BD",
+    "coordinates": [91.8342162, 22.3336887],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Colombo, LK",
+    "coordinates": [79.8541134, 6.9387469],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Dhaka, BD",
+    "coordinates": [90.389015, 23.7644025],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Fukuoka, JP",
+    "coordinates": [130.6180016, 33.6251241],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Hanoi, VN",
+    "coordinates": [105.8544441, 21.0294498],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Ho Chi Minh City, VN",
+    "coordinates": [106.7012016, 10.776325],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Hong Kong",
+    "coordinates": [114.1628131, 22.2793278],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Hyderabad, IN",
+    "coordinates": [78.4740613, 17.360589],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Islamabad, PK",
+    "coordinates": [73.0651511, 33.6938118],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Jakarta, ID",
+    "coordinates": [106.827183, -6.1753942],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Jashore, BD",
+    "coordinates": [89.2094419, 23.1665256],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Johor Bahru, MY",
+    "coordinates": [103.7495586, 1.503555],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Kanpur, IN",
+    "coordinates": [80.3217588, 26.4609135],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Karachi, PK",
+    "coordinates": [67.0207055, 24.8546842],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Kathmandu, NP",
+    "coordinates": [85.3205817, 27.708317],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Kolkata, IN",
+    "coordinates": [88.3638815, 22.5726723],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Kuala Lumpur, MY",
+    "coordinates": [101.6942371, 3.1516964],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Lahore, PK",
+    "coordinates": [74.3141829, 31.5656822],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Macau",
+    "coordinates": [113.5380454, 22.1899448],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Male, MV",
+    "coordinates": [73.5107387, 4.1779879],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Mandalay, MM",
+    "coordinates": [96.082375, 21.9812746],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Manila, PH",
+    "coordinates": [120.9782618, 14.5948914],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Mumbai, IN",
+    "coordinates": [72.878176, 19.0785451],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Nagpur, IN",
+    "coordinates": [79.0820556, 21.1498134],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Naha, JP",
+    "coordinates": [127.6791452, 26.2122345],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Nasiriyah, IQ",
+    "coordinates": [46.2575523, 31.0440068],
+    "type": "cloudflare"
+  },
+  {
+    "city": "New Delhi, IN",
+    "coordinates": [77.2090057, 28.6138954],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Osaka, JP",
+    "coordinates": [135.490357, 34.6198813],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Patna, IN",
+    "coordinates": [85.1235252, 25.6093239],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Phnom Penh, KH",
+    "coordinates": [104.9224426, 11.568271],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Seoul, KR",
+    "coordinates": [126.9782914, 37.5666791],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Singapore, SG",
+    "coordinates": [103.8194992, 1.357107],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Surat Thani, TH",
+    "coordinates": [98.830042, 9.4674663],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Taipei",
+    "coordinates": [121.5636796, 25.0375198],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Tashkent, UZ",
+    "coordinates": [69.2787079, 41.3123363],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Tbilisi, GE",
+    "coordinates": [44.8014495, 41.6934591],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Thimphu, BT",
+    "coordinates": [89.6336729, 27.4713546],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Tokyo, JP",
+    "coordinates": [139.7594549, 35.6828387],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Ulaanbaatar, MN",
+    "coordinates": [106.9177016, 47.9184676],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Vientiane, LA",
+    "coordinates": [102.6133707, 17.9640988],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Yangon, MM",
+    "coordinates": [96.1609916, 16.7967129],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Yerevan, AM",
+    "coordinates": [44.5126174, 40.1776245],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Yogyakarta, ID",
+    "coordinates": [110.36722565020224, -7.9778383999999996],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Anqing, CN",
+    "coordinates": [116.6302585, 30.6592336],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Baoji, CN",
+    "coordinates": [107.2332184, 34.3645811],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Beijing, CN",
+    "coordinates": [116.3912757, 39.906217],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Changde, CN",
+    "coordinates": [111.6928724, 29.034552],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Changzhou, CN",
+    "coordinates": [119.9691539, 31.8122623],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Chengdu, CN",
+    "coordinates": [104.0633717, 30.6598628],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Chengmai, CN",
+    "coordinates": [110.0044422, 19.7381177],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Dalian, CN",
+    "coordinates": [121.6282945, 38.9181714],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Foshan, CN",
+    "coordinates": [113.1159558, 23.0239788],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Fuzhou, CN",
+    "coordinates": [116.3530413, 27.9511188],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Guangzhou, CN",
+    "coordinates": [113.2592945, 23.1301964],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Guiyang, CN",
+    "coordinates": [112.72964, 25.7561647],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Haikou, CN",
+    "coordinates": [110.1956502, 20.0462328],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Hohhot, CN",
+    "coordinates": [111.6730788, 40.8337963],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Huainan, CN",
+    "coordinates": [117.0130019, 32.5866826],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Jinan, CN",
+    "coordinates": [117.1140042, 36.6507007],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Jinhua, CN",
+    "coordinates": [119.6486487, 29.1080344],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Langfang, CN",
+    "coordinates": [116.6997446, 39.5128345],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Lanzhou, CN",
+    "coordinates": [103.8318566, 36.0620781],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Maoming, CN",
+    "coordinates": [110.9209511, 21.6656961],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Nanchang, CN",
+    "coordinates": [115.8540042, 28.687547],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Qingdao, CN",
+    "coordinates": [120.3781372, 36.0638034],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Qinhuangdao, CN",
+    "coordinates": [119.5894129, 39.9395724],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Quanzhou, CN",
+    "coordinates": [118.6723605, 24.8755492],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Quzhou, CN",
+    "coordinates": [114.9585243, 36.7698986],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Shanghai, CN",
+    "coordinates": [121.4692071, 31.2322758],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Shenyang, CN",
+    "coordinates": [123.458674, 41.6749893],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Shiyan, CN",
+    "coordinates": [110.792752, 32.6314877],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Suqian, CN",
+    "coordinates": [118.2696994, 33.9644701],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Taizhou, CN",
+    "coordinates": [121.4163876, 28.6581723],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Wuxi, CN",
+    "coordinates": [120.3074357, 31.4933074],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Xianyang, CN",
+    "coordinates": [108.7043813, 34.3312012],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Xining, CN",
+    "coordinates": [101.7761976, 36.617331],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Xinyu, CN",
+    "coordinates": [114.8867147, 27.853572],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Yichang, CN",
+    "coordinates": [111.2803074, 30.694088],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Yiyang, CN",
+    "coordinates": [112.3497606, 28.5562003],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Zhengzhou, CN",
+    "coordinates": [113.6191483, 34.7487244],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Adelaide, AU",
+    "coordinates": [138.5999312, -34.9281805],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Auckland, NZ",
+    "coordinates": [174.7631803, -36.852095],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Brisbane, AU",
+    "coordinates": [153.0234991, -27.4689682],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Canberra, AU",
+    "coordinates": [149.1012676, -35.2975906],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Christchurch, NZ",
+    "coordinates": [172.6366455, -43.530955],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Guam, GU",
+    "coordinates": [144.75755102972062, 13.450125700000001],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Hobart, AU",
+    "coordinates": [147.3281233, -42.8825088],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Melbourne, AU",
+    "coordinates": [144.9631608, -37.8142176],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Noumea, NC",
+    "coordinates": [166.442419, -22.2745264],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Perth, AU",
+    "coordinates": [115.8605801, -31.9558964],
+    "type": "cloudflare"
+  },
+  {
+    "city": "Sydney, AU",
+    "coordinates": [151.2082848, -33.8698439],
+    "type": "cloudflare"
+  }
+]
