@@ -1,7 +1,7 @@
 import { Anchor, AppShell, Flex, Text } from '@mantine/core'
 import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import Index from './pages'
+import Index from './pages/index'
 import Session from './pages/session'
 
 const Header = () => {

@@ -1,19 +1,14 @@
 import React, { useMemo } from 'react'
 import { useAtomValue } from 'jotai'
 import { frameAtom, packetsAtom } from '../../state/packets'
-import { scaleLinear, scaleTime } from '@visx/scale'
+import { scaleLinear } from '@visx/scale'
 import { Line, LinePath } from '@visx/shape'
 import ParentSize from '@visx/responsive/lib/components/ParentSizeModern'
-import { curveBasis, curveNatural } from '@visx/curve'
+import { curveBasis } from '@visx/curve'
 import { dateForFrame } from '../../utils/remotion'
 import { AxisBottom } from '@visx/axis'
 import { darkModeAtom } from '../../state/app'
-
-const roundDate = (date) => {
-  const rounded = new Date(date)
-  rounded.setSeconds(0)
-  return rounded
-}
+import { isLiveAtom } from '../../state/sessions'
 
 const packetsToBuckets = (packets) => {
   const buckets = packets.reduce((acc, curr) => {
@@ -96,14 +91,16 @@ const FrameLine = ({ height, minDate, xScale, padding, color }) => {
 
 const LineChartComponent = ({ width, height, packets, padding = 16 }) => {
   const darkMode = useAtomValue(darkModeAtom)
+  const isLive = useAtomValue(isLiveAtom)
   const color = darkMode ? '#D2D7DF' : '#1F2937'
   const minDate = Math.min(...packets.map((p) => p.timestamp.valueOf()))
   const buckets = packetsToBuckets(packets)
   const xScale = useMemo(
     () =>
       scaleLinear({
-        domain: extent([...buckets, { date: new Date() }], (d) =>
-          d.date.valueOf()
+        domain: extent(
+          isLive ? [...buckets, { date: new Date() }] : buckets,
+          (d) => d.date.valueOf()
         ),
         range: [padding, width - padding * 2],
       }),

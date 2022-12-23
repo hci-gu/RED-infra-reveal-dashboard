@@ -4,6 +4,7 @@ import React from 'react'
 import * as ReactDOMClient from 'react-dom/client'
 import { createClient, Provider } from 'urql'
 import App from './App'
+import CMSPageRoutes from './components/CMSPageRoutes'
 import { darkModeAtom } from './state/app'
 
 const AppWithTheme = () => {
@@ -49,9 +50,12 @@ const client = createClient({
 
 const Root = () => {
   return (
-    <Provider value={client}>
-      <AppWithTheme />
-    </Provider>
+    <>
+      <Provider value={client}>
+        <AppWithTheme />
+        <CMSPageRoutes />
+      </Provider>
+    </>
   )
 }
 

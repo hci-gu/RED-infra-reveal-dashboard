@@ -6,12 +6,19 @@ import { filteredPacketsAtom } from '../../state/packets'
 const PacketListComponent = ({ packets }) => {
   return (
     <ScrollArea style={{ height: '100%' }}>
-      <Table fontSize="xs" verticalSpacing={4} horizontalSpacing={0}>
+      <Table
+        fontSize="xs"
+        verticalSpacing={4}
+        horizontalSpacing={4}
+        striped
+        withColumnBorders
+        style={{ tableLayout: 'fixed' }}
+      >
         <thead>
           <tr>
             <th>Host</th>
             <th>City</th>
-            <th>a</th>
+            <th>time</th>
           </tr>
         </thead>
         <tbody>
@@ -20,7 +27,7 @@ const PacketListComponent = ({ packets }) => {
             .slice(0, 25)
             .map((packet) => (
               <tr key={packet.id}>
-                <td>{packet.host}</td>
+                <td style={{ overflowX: 'hidden' }}>{packet.host}</td>
                 <td>{packet.city ?? '-'}</td>
                 <td>{packet.timestamp.toLocaleTimeString()}</td>
               </tr>

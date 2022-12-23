@@ -1,14 +1,9 @@
 import { useAtom } from 'jotai'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { useQuery } from 'urql'
-import {
-  apiPackets,
-  categoriesAtom,
-  mapPackets,
-  packetsAtom,
-  tagsAtom,
-} from '../state/packets'
+import { useMutation, useQuery } from 'urql'
+import { apiPackets, categoriesAtom, tagsAtom } from '../state/packets'
+import { sessionAtom, sessionsAtom } from '../state/sessions'
 
 const SessionsQuery = `
 {
@@ -22,18 +17,66 @@ const SessionsQuery = `
 `
 
 export const useSessions = () => {
-  const [sessions, setSessions] = useState([])
+  const [sessions, setSessions] = useAtom(sessionsAtom)
   const [result] = useQuery({
     query: SessionsQuery,
   })
 
   useEffect(() => {
     if (!!result.data) {
-      setSessions(result.data.sessions)
+      setSessions(result.data.sessions.reverse())
     }
   }, [result])
 
   return sessions
+}
+
+const CreateSessionQuery = `
+mutation create($data: SessionCreateInput!) {
+  createSession(data: $data) {
+    id
+    name
+    start
+    end
+  }
+}
+`
+
+export const useCreateSession = () => {
+  const [result, createSession] = useMutation(CreateSessionQuery)
+  const [, setSessions] = useAtom(sessionsAtom)
+
+  useEffect(() => {
+    if (!!result.data) {
+      setSessions((sessions) => [...sessions, result.data.createSession])
+    }
+  }, [result])
+
+  return [result, createSession]
+}
+
+const UpdateSessionQuery = `
+mutation update($id: ID!, $data: SessionUpdateInput!) {
+  updateSession(where: { id: $id }, data: $data) {
+    id
+    name
+    start
+    end
+  }
+}
+`
+
+export const useUpdateSession = () => {
+  const [result, updateSession] = useMutation(UpdateSessionQuery)
+  const [sessions, setSessions] = useAtom(sessionsAtom)
+
+  useEffect(() => {
+    if (!!result.data) {
+      setSessions([...sessions])
+    }
+  }, [result])
+
+  return [result, updateSession]
 }
 
 const SessionQuery = `
@@ -49,7 +92,7 @@ query getSession($id: ID!) {
 
 export const useSession = () => {
   const { id } = useParams()
-  const [session, setSession] = useState(null)
+  const [session, setSession] = useAtom(sessionAtom)
   const [result] = useQuery({
     query: SessionQuery,
     variables: { id },

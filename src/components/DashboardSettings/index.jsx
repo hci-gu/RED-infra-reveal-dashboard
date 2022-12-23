@@ -37,6 +37,30 @@ const PlayBackRate = () => {
   )
 }
 
+const GlobeMapBorder = () => {
+  const [settings, set] = useAtom(mapSettingsAtom)
+
+  if (!settings.globe) return null
+
+  return (
+    <Slider
+      label="Border width"
+      w={200}
+      value={settings.borderWidth}
+      onChange={(value) => set({ borderWidth: value })}
+      min={1000}
+      step={500}
+      max={100000}
+      thumbSize={14}
+      styles={() => ({
+        markLabel: {
+          fontSize: 9,
+        },
+      })}
+    />
+  )
+}
+
 const DarkModeToggle = () => {
   const [darkMode, setDarkMode] = useAtom(darkModeAtom)
   return (
@@ -153,6 +177,7 @@ const DashboardSettings = () => {
             <Toggle field="globe" label="Globe" />
             <Toggle field="cameraLight" label="Camera Light" />
           </Flex>
+          <GlobeMapBorder />
           <MapProjectionSelect />
           <MapDetailSelect />
           <DataCenterSelect />

@@ -1,8 +1,9 @@
 import { Title } from '@mantine/core'
 
-export const Logo = ({ small }) => {
+export const Logo = ({ small, ...props }) => {
   return (
     <Title
+      {...props}
       order={small ? 4 : 1}
       sx={() => ({
         '@media (min-width: 1600px)': {

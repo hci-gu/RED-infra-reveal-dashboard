@@ -48,7 +48,7 @@ const PlayerStuff = () => {
   )
 }
 
-const DashboardWrapper = ({ live = false }) => {
+const DashboardWrapper = ({ isLive = false }) => {
   const ref = useRef()
   const packets = useAtomValue(packetsAtom)
   const playbackRate = useAtomValue(playbackRateAtom)
@@ -56,26 +56,28 @@ const DashboardWrapper = ({ live = false }) => {
   const renderPlayPauseButton = useCallback(({ playing }) => {
     return (
       <Flex gap="md" align="center">
-        <ActionIcon>
+        <ActionIcon c="#fff">
           {playing ? <IconPlayerPause /> : <IconPlayerPlay />}
         </ActionIcon>
-        <Button
-          color="red"
-          variant="outline"
-          size="sm"
-          compact
-          onClick={(e) => {
-            ref.current.seekTo(Infinity)
-            setTimeout(() => {
-              ref.current.seekTo(ref.current.getCurrentFrame() - FPS * 2)
-              ref.current.play()
-            }, 1000)
-            e.stopPropagation()
-          }}
-          leftIcon={<IconPoint />}
-        >
-          Go live
-        </Button>
+        {isLive && (
+          <Button
+            color="red"
+            variant="outline"
+            size="sm"
+            compact
+            onClick={(e) => {
+              ref.current.seekTo(Infinity)
+              setTimeout(() => {
+                ref.current.seekTo(ref.current.getCurrentFrame() - FPS * 2)
+                ref.current.play()
+              }, 1000)
+              e.stopPropagation()
+            }}
+            leftIcon={<IconPoint />}
+          >
+            Go live
+          </Button>
+        )}
       </Flex>
     )
   }, [])
@@ -88,15 +90,12 @@ const DashboardWrapper = ({ live = false }) => {
       controls
       autoPlay
       spaceKeyToPlayOrPause
-      durationInFrames={packetsToFrameDuration(packets, live)}
+      durationInFrames={packetsToFrameDuration(packets, isLive)}
       fps={FPS}
       playbackRate={playbackRate}
       compositionWidth={width ? width : 1920}
       compositionHeight={height ? height : 1080}
       clickToPlay={false}
-      play={(e) => {
-        console.log('PLAY', e)
-      }}
       style={{ width: '100%', height: '100%' }}
       renderPlayPauseButton={renderPlayPauseButton}
     />
@@ -115,7 +114,7 @@ const Session = () => {
       {!!packets.length && <InitPackets packets={packets} />}
       <div style={{ position: 'relative', width: '100%', height: '100%' }}>
         <LoadingOverlay visible={fetching} />
-        <DashboardWrapper live={isLive} />
+        <DashboardWrapper isLive={isLive} />
       </div>
       {isLive && <SocketListener />}
     </>
