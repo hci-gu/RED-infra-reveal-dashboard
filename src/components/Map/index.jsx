@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react'
-import { DeckGL, GeoJsonLayer } from 'deck.gl'
+import { DeckGL } from 'deck.gl'
 import { _GlobeView as GlobeView } from '@deck.gl/core'
 import {
   createGlobeLayers,
@@ -19,7 +19,7 @@ import { useViewportSize } from '@mantine/hooks'
 import useDataCenterLayer from './DataCenterLayer'
 import LayerToggles from './LayerToggles'
 import Clock from './Clock'
-import Clients from './Clients'
+import useCablesLayer from './CablesLayer'
 
 const regionNames = new Intl.DisplayNames(['en'], { type: 'region' })
 
@@ -64,6 +64,7 @@ export const Map = () => {
   const hexagonLayer = useHexagonLayer(packets, zoom, settings.globe)
   const arcLayer = useAnimatedArcLayer(zoom)
   const dataCenterLayer = useDataCenterLayer(settings)
+  const cablesLayer = useCablesLayer()
 
   const maxDate = new Date(Math.max(...packets.map((p) => p.timestamp)))
   sunLight.timestamp = maxDate.getTime()
@@ -78,7 +79,7 @@ export const Map = () => {
       }}
     >
       <LayerToggles />
-      <Clients />
+      {/* <Clients /> */}
       <Clock />
       <DeckGL
         views={settings.globe ? new GlobeView() : null}
@@ -87,6 +88,7 @@ export const Map = () => {
           ...(settings.globe ? globeLayers : []),
           settings.heatmap ? hexagonLayer : null,
           settings.packets ? arcLayer : null,
+          settings.cables ? cablesLayer : null,
           dataCenterLayer,
         ]}
         effects={[lightingEffect(settings)]}

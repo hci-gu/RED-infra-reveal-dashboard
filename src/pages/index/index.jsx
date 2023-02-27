@@ -12,6 +12,7 @@ import Concepts from './Concepts'
 import Globe from './Globe'
 import SessionList from './SessionList'
 import { Logo } from '../../components/Logo'
+import LanguageSelect from '../../components/LanguageSelect'
 
 const Container = styled.div`
   background-color: #0d0d0d;
@@ -91,6 +92,7 @@ const Index = () => {
   return (
     <Container>
       <Logo style={{ margin: '0px auto', marginTop: '30px', width: '89%' }} />
+      <LanguageSelect />
       {landing && (
         <About title={landing.title} description={landing.description} />
       )}

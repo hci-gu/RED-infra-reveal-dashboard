@@ -7,8 +7,7 @@ import { filteredPacketsAtom } from '../../state/packets'
 import { useViewportSize } from '@mantine/hooks'
 import ParentSize from '@visx/responsive/lib/components/ParentSizeModern'
 import { Center, Flex } from '@mantine/core'
-
-const colors = ['#A71D31', '#F26A44', '#F0BC50', '#8AB055', '#6D807A']
+import { vizColors } from '../../utils/color'
 
 function wordFreq(text) {
   const words = text.split(/\s/)
@@ -54,7 +53,7 @@ function WordCloudComponent({ width, height, packets }) {
           cloudWords.map((w, i) => (
             <Text
               key={w.text}
-              fill={colors[i % colors.length]}
+              fill={vizColors[i % vizColors.length]}
               textAnchor={'middle'}
               transform={`translate(${w.x}, ${w.y}) rotate(${w.rotate})`}
               fontSize={w.size}
@@ -71,7 +70,9 @@ function WordCloudComponent({ width, height, packets }) {
 
 const MemoizedWordCloud = React.memo(WordCloudComponent, (prev, next) => {
   const diff = next.lastUpdate - prev.lastUpdate
-  if (diff < 30000) return true
+  // console.log(diff)
+  if (next.packets.length < 100 && diff < 1000) return true
+  if (diff < 10000) return true
   return prev.packets.length === next.packets.length
 })
 

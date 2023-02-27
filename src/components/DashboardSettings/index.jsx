@@ -138,8 +138,9 @@ const DataCenterSelect = () => {
 
 const OpenDashboardSettingsButton = forwardRef((props, ref) => {
   return (
-    <div ref={ref}>
+    <div ref={ref} style={{ position: 'relative', width: 25 }}>
       <IconSettings
+        style={{ position: 'absolute', marginTop: -12 }}
         onClick={props.setOpened}
         sx={() => ({
           '@media (min-width: 1600px)': {
@@ -181,6 +182,7 @@ const DashboardSettings = () => {
           <MapProjectionSelect />
           <MapDetailSelect />
           <DataCenterSelect />
+          <Toggle field="cables" label="Cables" />
         </Flex>
       </Popover.Dropdown>
     </Popover>

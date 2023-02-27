@@ -5,16 +5,17 @@ import { Group } from '@visx/group'
 import { scaleOrdinal } from '@visx/scale'
 import { useAtomValue } from 'jotai'
 import { packetsByTag } from '../../state/packets'
+import { vizColors } from '../../utils/color'
 
 const fontSizeForSpace = (percent) => {
   if (percent > 0.25) {
-    return 16
+    return 20
   }
   if (percent > 0.15) {
-    return 14
+    return 18
   }
   if (percent > 0.05) {
-    return 10
+    return 15
   }
   if (percent > 0.03) {
     return 0
@@ -32,13 +33,7 @@ function PieComponent({ width, height }) {
     () =>
       scaleOrdinal({
         domain: data.map((d) => d.type),
-        range: [
-          'rgba(167, 29, 49,1)',
-          'rgba(167, 29, 49,0.8)',
-          'rgba(167, 29, 49,0.6)',
-          'rgba(167, 29, 49,0.4)',
-          'rgba(167, 29, 49,0.2)',
-        ],
+        range: vizColors,
       }),
     [data]
   )
@@ -51,30 +46,43 @@ function PieComponent({ width, height }) {
           pieValue={(d) => d.value}
           pieSortValues={pieSortValues}
           outerRadius={radius}
-          padAngle={0.01}
+          padAngle={0.02}
           cornerRadius={4}
         >
           {(pie) => {
-            return pie.arcs.map((arc, index) => {
+            const arcs = pie.arcs.map((arc, index) => {
               const { type } = arc.data
-              const [centroidX, centroidY] = pie.path.centroid(arc)
-              const percentSpace =
-                (arc.endAngle - arc.startAngle) / (2 * Math.PI)
               const arcPath = pie.path(arc)
               const arcFill = getLetterFrequencyColor(type)
-              const fontSize = fontSizeForSpace(percentSpace)
               return (
                 <g key={`arc-${type}-${index}`}>
                   <path d={arcPath} fill={arcFill} />
+                </g>
+              )
+            })
+
+            const texts = pie.arcs.map((arc, index) => {
+              const [centroidX, centroidY] = pie.path.centroid(arc)
+              const percentSpace =
+                (arc.endAngle - arc.startAngle) / (2 * Math.PI)
+              const fontSize = fontSizeForSpace(percentSpace)
+              return (
+                <g key={`arc-${arc.data.type}-${index}-text`}>
                   {fontSize > 0 && (
                     <text
                       x={centroidX}
                       y={centroidY}
                       dy=".33em"
-                      fill="#ffffff"
+                      fill="#fafafa"
                       fontSize={fontSize}
+                      fontWeight="bold"
                       textAnchor="middle"
+                      stroke="black"
+                      strokeWidth="3.5px"
                       pointerEvents="none"
+                      style={{
+                        paintOrder: 'stroke',
+                      }}
                     >
                       {arc.data.type}
                     </text>
@@ -82,6 +90,8 @@ function PieComponent({ width, height }) {
                 </g>
               )
             })
+
+            return [...arcs, ...texts]
           }}
         </Pie>
       </Group>
