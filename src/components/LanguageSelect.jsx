@@ -15,8 +15,8 @@ const availableLanguages = [
     value: 'sv-se',
   },
   {
-    name: '🇪🇸 Español',
-    value: 'es',
+    name: '🇦🇷 Español',
+    value: 'es-ar',
   },
   {
     name: '🇩🇪 Deutsch',
