@@ -10,7 +10,7 @@ const useSetAtom = (anAtom) => {
   return useAtom(writeOnlyAtom)[1]
 }
 
-export const useSocket = () => {
+export const useSocket = (session) => {
   const setPackets = useSetAtom(packetsAtom)
 
   useEffect(() => {
@@ -26,7 +26,7 @@ export const useSocket = () => {
         const minDate = Math.min(
           ...packets.map((p) => new Date(p.timestamp).valueOf())
         )
-        return [...packets, ...mapPackets(packetstoUpdate, minDate)]
+        return [...packets, ...mapPackets(session, packetstoUpdate, minDate)]
       })
       packetstoUpdate = []
     }, 1000)

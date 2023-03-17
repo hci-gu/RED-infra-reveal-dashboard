@@ -6,7 +6,6 @@ export const packetsToFrameDuration = (packets, live = false) => {
 
   if (live) {
     const minDate = Math.min(...packets.map((p) => p.timestamp))
-    console.log(minDate)
     const frames = frameForDate(minDate, new Date())
     return Math.max(frames + FPS * 5, FPS * 5)
   }

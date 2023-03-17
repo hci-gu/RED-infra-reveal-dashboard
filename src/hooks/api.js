@@ -86,6 +86,8 @@ query getSession($id: ID!) {
     name
     start
     end
+    lat
+    lon
   }
 }
 `

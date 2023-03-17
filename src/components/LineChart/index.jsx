@@ -1,6 +1,10 @@
 import React, { useMemo } from 'react'
 import { useAtomValue } from 'jotai'
-import { frameAtom, packetsAtom } from '../../state/packets'
+import {
+  filteredPacketsAtom,
+  frameAtom,
+  packetsAtom,
+} from '../../state/packets'
 import { scaleLinear } from '@visx/scale'
 import { Line, LinePath } from '@visx/shape'
 import ParentSize from '@visx/responsive/lib/components/ParentSizeModern'
@@ -95,17 +99,10 @@ const LineChartComponent = ({ width, height, packets, padding = 16 }) => {
   const color = darkMode ? '#D2D7DF' : '#1F2937'
   const minDate = Math.min(...packets.map((p) => p.timestamp.valueOf()))
   const buckets = packetsToBuckets(packets)
-  const xScale = useMemo(
-    () =>
-      scaleLinear({
-        domain: extent(
-          isLive ? [...buckets, { date: new Date() }] : buckets,
-          (d) => d.date.valueOf()
-        ),
-        range: [padding, width - padding * 2],
-      }),
-    [width]
-  )
+  const xScale = scaleLinear({
+    domain: extent(buckets, (d) => d.date.valueOf()),
+    range: [padding, width - padding * 2],
+  })
   const yScale = useMemo(
     () =>
       scaleLinear({
@@ -123,7 +120,7 @@ const LineChartComponent = ({ width, height, packets, padding = 16 }) => {
         data={buckets}
         x={(d) => xScale(d.date.valueOf())}
         y={(d) => yScale(d.value)}
-        curve={curveBasis}
+        // curve={curveBasis}
       />
       <FrameLine
         xScale={xScale}
@@ -149,6 +146,16 @@ const LineChartComponent = ({ width, height, packets, padding = 16 }) => {
   )
 }
 
+let timer
+const MemoizedLineChart = React.memo(LineChartComponent, (prev, next) => {
+  // update at most once per second
+  if (timer) return true
+  timer = setTimeout(() => {
+    timer = null
+  }, 1000)
+  return false
+})
+
 const LineChart = () => {
   const packets = useAtomValue(packetsAtom)
 
@@ -156,12 +163,8 @@ const LineChart = () => {
 
   return (
     <ParentSize>
-      {({ width: visWidth, height: visHeight }) => (
-        <LineChartComponent
-          width={visWidth}
-          height={visHeight}
-          packets={packets}
-        />
+      {({ width, height }) => (
+        <MemoizedLineChart width={width} height={height} packets={packets} />
       )}
     </ParentSize>
   )

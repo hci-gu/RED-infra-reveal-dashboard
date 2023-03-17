@@ -288,7 +288,28 @@ const SessionList = ({ title }) => {
           icon={<IconPlus />}
           onClick={(e) => {
             e.preventDefault()
-            createSession({ data: { start: new Date().toISOString() } })
+            if (
+              confirm(
+                'Do you want to start a session with your current location?'
+              )
+            ) {
+              navigator.geolocation.getCurrentPosition((position) => {
+                const { latitude, longitude } = position.coords
+                createSession({
+                  data: {
+                    start: new Date().toISOString(),
+                    lat: latitude,
+                    lon: longitude,
+                  },
+                })
+              })
+            } else {
+              createSession({
+                data: {
+                  start: new Date().toISOString(),
+                },
+              })
+            }
           }}
         >
           Start a session

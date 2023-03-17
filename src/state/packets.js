@@ -25,7 +25,7 @@ const distanceBetweenCoords = (lat1, lon1, lat2, lon2) => {
   return d
 }
 
-export const mapPackets = (packets, existingMinDate) => {
+export const mapPackets = (session, packets, existingMinDate) => {
   const minDate = existingMinDate
     ? existingMinDate
     : Math.min(...packets.map((p) => new Date(p.timestamp).valueOf()))
@@ -33,7 +33,11 @@ export const mapPackets = (packets, existingMinDate) => {
   return packets.map((p) => {
     const timestamp = new Date(p.timestamp)
     const startFrame = frameForDate(minDate, timestamp)
-    const clientPos = [11.91737, 57.69226]
+    const clientPos =
+      session && session.lon && session.lat
+        ? [session.lon, session.lat]
+        : [11.91737, 57.69226]
+    // console.log('clientPos', clientPos)
     return {
       id: p.id,
       ip: p.ip,

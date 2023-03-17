@@ -13,11 +13,11 @@ import { frameAtom, mapPackets, packetsAtom } from '../../state/packets'
 import { FPS, packetsToFrameDuration } from '../../utils/remotion'
 import Dashboard from './Dashboard'
 
-const InitPackets = ({ packets }) => {
+const InitPackets = ({ session, packets }) => {
   console.log('init packets')
   const [, setPackets] = useAtom(packetsAtom)
   useEffect(() => {
-    setPackets(mapPackets(packets))
+    setPackets(mapPackets(session, packets))
   }, [packets])
 
   return <></>
@@ -34,8 +34,8 @@ const FrameSetter = () => {
   return <></>
 }
 
-const SocketListener = () => {
-  useSocket()
+const SocketListener = ({ session }) => {
+  useSocket(session)
   return null
 }
 
@@ -111,12 +111,12 @@ const Session = () => {
 
   return (
     <>
-      {!!packets.length && <InitPackets packets={packets} />}
+      {!!packets.length && <InitPackets session={session} packets={packets} />}
       <div style={{ position: 'relative', width: '100%', height: '100%' }}>
         <LoadingOverlay visible={fetching} />
         <DashboardWrapper isLive={isLive} />
       </div>
-      {isLive && <SocketListener />}
+      {isLive && <SocketListener session={session} />}
     </>
   )
 }
