@@ -37,7 +37,7 @@ const Statistics = () => {
     }, 0) / packets.length
 
   return (
-    <Card shadow="sm">
+    <Card shadow="sm" mah={200}>
       <Grid align="center">
         <Grid.Col span={3}>
           <Stack p={0} spacing={0}>

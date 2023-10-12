@@ -264,7 +264,7 @@ const SessionList = ({ title }) => {
 
   return (
     <Container>
-      <RichText render={title} />
+      {title && <RichText render={title} />}
       <div>
         {sessions.length > 0
           ? sessions.map((s) => <Session session={s} key={`Session_${s.id}`} />)

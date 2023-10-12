@@ -95,7 +95,6 @@ const FrameLine = ({ height, minDate, xScale, padding, color }) => {
 
 const LineChartComponent = ({ width, height, packets, padding = 16 }) => {
   const darkMode = useAtomValue(darkModeAtom)
-  const isLive = useAtomValue(isLiveAtom)
   const color = darkMode ? '#D2D7DF' : '#1F2937'
   const minDate = Math.min(...packets.map((p) => p.timestamp.valueOf()))
   const buckets = packetsToBuckets(packets)
@@ -103,13 +102,15 @@ const LineChartComponent = ({ width, height, packets, padding = 16 }) => {
     domain: extent(buckets, (d) => d.date.valueOf()),
     range: [padding, width - padding * 2],
   })
+  const every50Packets =
+    packets.length < 100 ? packets.length : Math.floor(packets.length / 50)
   const yScale = useMemo(
     () =>
       scaleLinear({
         domain: extent(buckets, (d) => d.value),
         range: [height - padding * 2, padding],
       }),
-    [height]
+    [height, every50Packets]
   )
 
   return (
@@ -120,7 +121,7 @@ const LineChartComponent = ({ width, height, packets, padding = 16 }) => {
         data={buckets}
         x={(d) => xScale(d.date.valueOf())}
         y={(d) => yScale(d.value)}
-        // curve={curveBasis}
+        curve={curveBasis}
       />
       <FrameLine
         xScale={xScale}

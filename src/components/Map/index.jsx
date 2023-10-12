@@ -3,7 +3,7 @@ import { DeckGL } from 'deck.gl'
 import { _GlobeView as GlobeView } from '@deck.gl/core'
 import {
   createGlobeLayers,
-  INITIAL_VIEW_STATE,
+  getInitialViewState,
   lightingEffect,
   sunLight,
 } from './constants'
@@ -20,6 +20,8 @@ import useDataCenterLayer from './DataCenterLayer'
 import LayerToggles from './LayerToggles'
 import Clock from './Clock'
 import useCablesLayer from './CablesLayer'
+import { sessionAtom } from '../../state/sessions'
+import WordCloud, { MemoizedWordCloud } from '../WordCloud'
 
 const regionNames = new Intl.DisplayNames(['en'], { type: 'region' })
 
@@ -34,6 +36,13 @@ const cityForPointsAndPackets = (points, packets) => {
   if (!matchingPacket) return null
   if (matchingPacket.city) return matchingPacket.city
   return regionNames.of(matchingPacket.country)
+}
+
+const packetsForPoints = (points, packets) => {
+  const uniquePoints = new Set(
+    points.map((p) => `${p.source[0]}${p.source[1]}`)
+  )
+  return packets.filter((p) => uniquePoints.has(`${p.pos[0]}${p.pos[1]}`))
 }
 
 function getTooltip({ layer, object }, packets) {
@@ -51,7 +60,9 @@ function getTooltip({ layer, object }, packets) {
 }
 
 export const Map = () => {
+  const session = useAtomValue(sessionAtom)
   const { height } = useViewportSize()
+  const [heatmapInfo, setHeatMapInfo] = useState(null)
   const [zoom, setZoom] = useState(0)
   const darkMode = useAtomValue(darkModeAtom)
   const settings = useAtomValue(mapSettingsAtom)
@@ -61,7 +72,20 @@ export const Map = () => {
     [darkMode, settings, zoom]
   )
 
-  const hexagonLayer = useHexagonLayer(packets, zoom, settings.globe)
+  const hexagonLayer = useHexagonLayer(
+    packets,
+    zoom,
+    settings.globe,
+    (info) => {
+      if (
+        info.object.position[0] == heatmapInfo?.object.position[0] &&
+        info.object.position[1] == heatmapInfo?.object.position[1]
+      ) {
+        return setHeatMapInfo(null)
+      }
+      setHeatMapInfo(info)
+    }
+  )
   const arcLayer = useAnimatedArcLayer(zoom)
   const dataCenterLayer = useDataCenterLayer(settings)
   const cablesLayer = useCablesLayer()
@@ -92,7 +116,10 @@ export const Map = () => {
           dataCenterLayer,
         ]}
         effects={[lightingEffect(settings)]}
-        initialViewState={INITIAL_VIEW_STATE}
+        initialViewState={getInitialViewState({
+          latitude: session?.lat,
+          longitude: session?.lon,
+        })}
         getTooltip={(t) => getTooltip(t, packets)}
         onViewStateChange={({ viewState }) => {
           setZoom(viewState.zoom)
@@ -105,6 +132,27 @@ export const Map = () => {
             height={height}
             style={{ zIndex: -1 }}
           />
+        )}
+        {heatmapInfo?.object && (
+          <div
+            style={{
+              position: 'absolute',
+              zIndex: 100,
+              pointerEvents: 'none',
+              left: heatmapInfo.x,
+              top: heatmapInfo.y,
+              background: darkMode
+                ? 'rgba(0,0,0,0.8)'
+                : 'rgba(255,255,255,0.9)',
+              borderRadius: '16px',
+            }}
+          >
+            <MemoizedWordCloud
+              width={480}
+              height={360}
+              packets={packetsForPoints(heatmapInfo.object.points, packets)}
+            />
+          </div>
         )}
       </DeckGL>
     </Card>

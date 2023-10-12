@@ -1,5 +1,4 @@
 import { Card, Container, Flex, Grid } from '@mantine/core'
-import { useAtomValue } from 'jotai'
 import React from 'react'
 import DashboardSettings from '../../components/DashboardSettings'
 import LineChart from '../../components/LineChart'

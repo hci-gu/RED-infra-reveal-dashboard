@@ -14,7 +14,7 @@ export const packetsToFrameDuration = (packets, live = false) => {
 
 export const dateForFrame = (start, frame) => {
   const date = new Date(start)
-  date.setSeconds(date.getSeconds() + frame / frameDuration)
+  date.setSeconds(date.getSeconds() + frame / FPS)
   return date
 }
 

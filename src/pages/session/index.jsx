@@ -4,7 +4,6 @@ import { Player } from '@remotion/player'
 import { IconPlayerPause, IconPlayerPlay, IconPoint } from '@tabler/icons'
 import { useAtom, useAtomValue } from 'jotai'
 import React, { useCallback, useEffect, useRef } from 'react'
-import { useParams } from 'react-router-dom'
 import { useCurrentFrame } from 'remotion'
 import { useCategoriesAndTags, usePackets, useSession } from '../../hooks/api'
 import { useSocket } from '../../hooks/socket'
@@ -14,7 +13,6 @@ import { FPS, packetsToFrameDuration } from '../../utils/remotion'
 import Dashboard from './Dashboard'
 
 const InitPackets = ({ session, packets }) => {
-  console.log('init packets')
   const [, setPackets] = useAtom(packetsAtom)
   useEffect(() => {
     setPackets(mapPackets(session, packets))

@@ -4,9 +4,8 @@ import { scaleLog } from '@visx/scale'
 import { Wordcloud } from '@visx/wordcloud'
 import { useAtomValue } from 'jotai'
 import { filteredPacketsAtom } from '../../state/packets'
-import { useViewportSize } from '@mantine/hooks'
 import ParentSize from '@visx/responsive/lib/components/ParentSizeModern'
-import { Center, Flex } from '@mantine/core'
+import { Flex } from '@mantine/core'
 import { vizColors } from '../../utils/color'
 
 function wordFreq(text) {
@@ -49,8 +48,28 @@ function WordCloudComponent({ width, height, packets }) {
         rotate={0}
         random={fixedValueGenerator}
       >
-        {(cloudWords) =>
-          cloudWords.map((w, i) => (
+        {(cloudWords) => {
+          if (!cloudWords.length || (cloudWords.length === 1 && words.length)) {
+            const word = words[0]
+            return (
+              <Text
+                fill={vizColors[0]}
+                textAnchor={'middle'}
+                fontSize={24}
+                style={{
+                  position: 'relative',
+                  overflow: 'visible',
+                  zIndex: 100,
+                }}
+              >
+                {word.text}
+              </Text>
+            )
+          }
+
+          console.log(cloudWords)
+
+          return cloudWords.map((w, i) => (
             <Text
               key={w.text}
               fill={vizColors[i % vizColors.length]}
@@ -62,19 +81,22 @@ function WordCloudComponent({ width, height, packets }) {
               {w.text}
             </Text>
           ))
-        }
+        }}
       </Wordcloud>
     </div>
   )
 }
 
-const MemoizedWordCloud = React.memo(WordCloudComponent, (prev, next) => {
-  const diff = next.lastUpdate - prev.lastUpdate
-  // console.log(diff)
-  if (next.packets.length < 100 && diff < 1000) return true
-  if (diff < 10000) return true
-  return prev.packets.length === next.packets.length
-})
+export const MemoizedWordCloud = React.memo(
+  WordCloudComponent,
+  (prev, next) => {
+    const diff = next.lastUpdate - prev.lastUpdate
+    // console.log(diff)
+    if (next.packets.length < 100 && diff < 1000) return true
+    if (diff < 10000) return true
+    return prev.packets.length === next.packets.length
+  }
+)
 
 export default function WordCloud() {
   const packets = useAtomValue(filteredPacketsAtom)

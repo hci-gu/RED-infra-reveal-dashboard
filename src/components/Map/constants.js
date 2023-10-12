@@ -25,15 +25,18 @@ const cameraLight = new CameraLight({
   intensity: 2.0,
 })
 
-export const INITIAL_VIEW_STATE = {
-  longitude: 11.91737,
-  latitude: 57.69226,
+export const getInitialViewState = ({
+  longitude = 11.91737,
+  latitude = 57.69226,
+}) => ({
+  longitude,
+  latitude,
   zoom: 1.5,
   minZoom: 0,
   maxZoom: 25,
   pitch: 40.5,
   bearing: 0,
-}
+})
 
 const EARTH_RADIUS_METERS = 6.3e6
 

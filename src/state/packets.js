@@ -30,35 +30,45 @@ export const mapPackets = (session, packets, existingMinDate) => {
     ? existingMinDate
     : Math.min(...packets.map((p) => new Date(p.timestamp).valueOf()))
 
-  return packets.map((p) => {
-    const timestamp = new Date(p.timestamp)
-    const startFrame = frameForDate(minDate, timestamp)
-    const clientPos =
-      session && session.lon && session.lat
-        ? [session.lon, session.lat]
-        : [11.91737, 57.69226]
-    // console.log('clientPos', clientPos)
-    return {
-      id: p.id,
-      ip: p.ip,
-      host: p.host,
-      protocol: p.protocol,
-      method: p.method,
-      accept: p.accept,
-      country: p.country,
-      region: p.region,
-      city: p.city,
-      userId: p.userId,
-      contentLength: p.contentLength,
-      responseTime: p.responseTime,
-      pos: [p.lon, p.lat],
-      clientPos,
-      distance: distanceBetweenCoords(p.lat, p.lon, clientPos[1], clientPos[0]),
-      timestamp,
-      startFrame,
-      endFrame: startFrame + 4 * FPS,
-    }
-  })
+  return packets
+    .map((p) => {
+      const timestamp = new Date(p.timestamp)
+      const startFrame = frameForDate(minDate, timestamp)
+      const clientPos =
+        session && session.lon && session.lat
+          ? [session.lon, session.lat]
+          : [11.91737, 57.69226]
+
+      return {
+        id: p.id,
+        ip: p.ip,
+        host: p.host,
+        protocol: p.protocol,
+        method: p.method,
+        accept: p.accept,
+        country: p.country,
+        region: p.region,
+        city: p.city,
+        userId: p.userId,
+        contentLength: p.contentLength,
+        responseTime: p.responseTime,
+        pos: [p.lon, p.lat],
+        clientPos,
+        distance: distanceBetweenCoords(
+          p.lat,
+          p.lon,
+          clientPos[1],
+          clientPos[0]
+        ),
+        timestamp,
+        startFrame,
+        endFrame: startFrame + 4 * FPS,
+        // displayTilt: 0,
+        displayTilt:
+          p.method === 'GET' ? Math.random() * 45 : Math.random() * -45,
+      }
+    })
+    .filter((p) => p.pos[0] && p.pos[1])
 }
 
 export const tagsAtom = atom([])

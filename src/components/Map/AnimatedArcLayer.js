@@ -62,7 +62,7 @@ AnimatedArcLayer.defaultProps = {
 }
 
 const widthForZoom = (zoom) => {
-  if (zoom > 5) return 2
+  if (zoom > 5) return 8
   if (zoom > 3) return 3
   if (zoom > 2) return 4
   if (zoom > 1.5) return 5
@@ -89,6 +89,7 @@ const useAnimatedArcLayer = (zoom) => {
     getTargetPosition: (d) => (d.method === 'GET' ? d.clientPos : d.pos),
     getSourceTimestamp: (d) => d.startFrame,
     getTargetTimestamp: (d) => d.endFrame,
+    getTilt: (d) => d.displayTilt,
     getHeight: heightForZoom(zoom),
     getWidth: widthForZoom(zoom),
     timeRange: timeRangeForFrame(frame),

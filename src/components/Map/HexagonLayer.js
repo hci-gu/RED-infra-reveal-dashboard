@@ -41,7 +41,12 @@ const elevationRangeForZoom = (zoom) => {
   return [2500, 30000]
 }
 
-const useHexagonLayer = (packets, zoom = 1, globe = false) => {
+const useHexagonLayer = (
+  packets,
+  zoom = 1,
+  globe = false,
+  onClick = () => {}
+) => {
   return new HexagonLayer({
     id: 'heatmap',
     colorRange,
@@ -54,6 +59,7 @@ const useHexagonLayer = (packets, zoom = 1, globe = false) => {
     elevationScale: 50,
     extruded: true,
     getPosition: (d) => d,
+    onClick,
     pickable: true,
     radius: radiusForZoom(zoom, globe),
     upperPercentile,
