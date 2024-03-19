@@ -101,7 +101,8 @@ const DashboardWrapper = ({ isLive = false }) => {
 }
 
 const Session = () => {
-  useCategoriesAndTags()
+  console.log('SESSION')
+  // useCategoriesAndTags()
   const session = useSession()
   const { packets, fetching } = usePackets()
 

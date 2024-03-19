@@ -1,5 +1,7 @@
 const NodeGeocoder = require('node-geocoder')
 const fs = require('fs')
+const geobuf = require('geobuf')
+const Pbf = require('pbf')
 const options = {
   provider: 'openstreetmap',
 }
@@ -36,4 +38,11 @@ const run = async () => {
   }
 }
 
-run()
+const run2 = async () => {
+  const raw = fs.readFileSync('cables.pbf')
+  console.log(raw, Pbf)
+  const data = geobuf.decode(new Pbf(raw))
+  console.log(data)
+}
+
+run2()

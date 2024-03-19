@@ -1,7 +1,6 @@
 import { useAtom } from 'jotai'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { useMutation, useQuery } from 'urql'
 import { apiPackets, categoriesAtom, tagsAtom } from '../state/packets'
 import { sessionAtom, sessionsAtom } from '../state/sessions'
 
@@ -17,18 +16,18 @@ const SessionsQuery = `
 `
 
 export const useSessions = () => {
-  const [sessions, setSessions] = useAtom(sessionsAtom)
-  const [result] = useQuery({
-    query: SessionsQuery,
-  })
+  // const [sessions, setSessions] = useAtom(sessionsAtom)
+  // const [result] = useQuery({
+  //   query: SessionsQuery,
+  // })
 
-  useEffect(() => {
-    if (!!result.data) {
-      setSessions(result.data.sessions.reverse())
-    }
-  }, [result])
+  // useEffect(() => {
+  //   if (!!result.data) {
+  //     setSessions(result.data.sessions.reverse())
+  //   }
+  // }, [result])
 
-  return sessions
+  return []
 }
 
 const CreateSessionQuery = `
@@ -93,20 +92,28 @@ query getSession($id: ID!) {
 `
 
 export const useSession = () => {
-  const { id } = useParams()
-  const [session, setSession] = useAtom(sessionAtom)
-  const [result] = useQuery({
-    query: SessionQuery,
-    variables: { id },
-  })
+  // const { id } = useParams()
+  // const [session, setSession] = useAtom(sessionAtom)
+  // const [result] = useQuery({
+  //   query: SessionQuery,
+  //   variables: { id },
+  // })
 
-  useEffect(() => {
-    if (!!result.data) {
-      setSession(result.data.session)
-    }
-  }, [result])
+  // useEffect(() => {
+  //   if (!!result.data) {
+  //     setSession(result.data.session)
+  //   }
+  // }, [result])
 
-  return session
+  // rerturn session
+  return {
+    id: 'mock',
+    name: 'mock',
+    start: new Date(),
+    end: null,
+    lat: 57.70887,
+    lon: 11.97456,
+  }
 }
 
 const PacketQuery = `
@@ -134,23 +141,27 @@ query getPackets($where: PacketWhereInput!) {
 `
 
 export const usePackets = () => {
-  const { id } = useParams()
-  const [packets, setPackets] = useAtom(apiPackets)
-  const [result] = useQuery({
-    query: PacketQuery,
-    variables: {
-      where: { session: { id: { equals: id } } },
-    },
-  })
-  const { data, fetching } = result
+  // const { id } = useParams()
+  // const [packets, setPackets] = useAtom(apiPackets)
+  // const [result] = useQuery({
+  //   query: PacketQuery,
+  //   variables: {
+  //     where: { session: { id: { equals: id } } },
+  //   },
+  // })
+  // const { data, fetching } = result
 
-  useEffect(() => {
-    if (!!data) {
-      setPackets(data.packets)
-    }
-  }, [id, data, setPackets])
+  // useEffect(() => {
+  //   if (!!data) {
+  //     setPackets(data.packets)
+  //   }
+  // }, [id, data, setPackets])
 
-  return { packets, fetching }
+  // return { packets, fetching }
+  return {
+    packets: [],
+    fetching: false,
+  }
 }
 
 const CategoriesQuery = `
@@ -163,17 +174,17 @@ query getCategories {
 `
 
 export const useCategories = () => {
-  const [categories, setCategories] = useAtom(categoriesAtom)
+  // const [categories, setCategories] = useAtom(categoriesAtom)
 
-  const [result] = useQuery({
-    query: CategoriesQuery,
-  })
-  const { data } = result
-  useEffect(() => {
-    if (!!data) setCategories(data.categories)
-  }, [data, setCategories])
+  // const [result] = useQuery({
+  //   query: CategoriesQuery,
+  // })
+  // const { data } = result
+  // useEffect(() => {
+  //   if (!!data) setCategories(data.categories)
+  // }, [data, setCategories])
 
-  return categories
+  return []
 }
 
 const TagsQuery = `
@@ -190,17 +201,17 @@ query getTags {
 `
 
 export const useTags = () => {
-  const [tags, setTags] = useAtom(tagsAtom)
+  // const [tags, setTags] = useAtom(tagsAtom)
 
-  const [result] = useQuery({
-    query: TagsQuery,
-  })
-  const { data } = result
-  useEffect(() => {
-    if (!!data) setTags(data.tags)
-  }, [data, setTags])
+  // const [result] = useQuery({
+  //   query: TagsQuery,
+  // })
+  // const { data } = result
+  // useEffect(() => {
+  //   if (!!data) setTags(data.tags)
+  // }, [data, setTags])
 
-  return tags
+  return []
 }
 
 export const useCategoriesAndTags = () => {
