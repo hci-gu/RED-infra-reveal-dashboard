@@ -10,7 +10,7 @@ export const availableDataCenters = [
 
 export const mapSettingsAtom = atom(
   {
-    globe: true,
+    globe: false,
     projection: 'mercator',
     detailLevel: 1,
     dataCenters: null,

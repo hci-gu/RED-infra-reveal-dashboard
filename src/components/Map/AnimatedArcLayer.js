@@ -85,8 +85,10 @@ const useAnimatedArcLayer = (zoom) => {
     data: packets,
     visible: true,
     pickable: true,
-    getSourcePosition: (d) => (d.method === 'GET' ? d.pos : d.clientPos),
-    getTargetPosition: (d) => (d.method === 'GET' ? d.clientPos : d.pos),
+    getSourcePosition: (d) =>
+      d.direction === 'incoming' ? d.pos : d.clientPos,
+    getTargetPosition: (d) =>
+      d.direction === 'incoming' ? d.clientPos : d.pos,
     getSourceTimestamp: (d) => d.startFrame,
     getTargetTimestamp: (d) => d.endFrame,
     getTilt: (d) => d.displayTilt,

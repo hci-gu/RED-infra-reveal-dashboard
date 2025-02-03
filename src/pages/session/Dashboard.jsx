@@ -1,4 +1,4 @@
-import { Card, Container, Flex, Grid } from '@mantine/core'
+import { Card, Container, Flex, Grid, Text } from '@mantine/core'
 import React from 'react'
 import DashboardSettings from '../../components/DashboardSettings'
 import LineChart from '../../components/LineChart'
@@ -10,6 +10,10 @@ import CategorySelect from '../../components/PieChart/CategorySelect'
 import Statistics from '../../components/Statistics'
 import TagSelect from '../../components/TagSelect'
 import WordCloud from '../../components/WordCloud'
+import { useAtomValue } from 'jotai'
+import { activeViewAtom } from '../../state/app'
+import IncomingOutgoingPackets from '../../components/IncomingOutgoingPackets'
+import Hosts from '../../components/Hosts'
 
 const TopRow = () => {
   return (
@@ -40,26 +44,28 @@ const TopRow = () => {
 }
 
 const Dashboard = () => {
+  const activeView = useAtomValue(activeViewAtom)
+
   return (
     <Grid columns={12} p="md" gutter="md" w="100%">
       <TopRow />
       <Grid.Col span={9}>
-        <Map />
+        {activeView === 'map' && <Map />}
+        {activeView === 'hosts' && <Hosts />}
       </Grid.Col>
-      <Grid.Col span={3}>
-        <Statistics />
-        <Card mt="md" h={'calc(25vh + 80px);'}>
-          <Flex direction="column" gap="xs">
-            <CategorySelect />
-            <Container w="100%" h={'25vh'}>
-              <PieChart />
-            </Container>
-          </Flex>
-        </Card>
-        <Card mt="md" h="calc(100vh - 640px);" p="xs">
-          <PacketList />
-        </Card>
-      </Grid.Col>
+      {activeView !== 'list' && (
+        <Grid.Col span={3}>
+          <Statistics />
+          <Card mt="md" h="calc(100vh - 400px);" p="xs">
+            <PacketList />
+          </Card>
+        </Grid.Col>
+      )}
+      {activeView === 'list' && (
+        <Grid.Col span={12}>
+          <IncomingOutgoingPackets />
+        </Grid.Col>
+      )}
     </Grid>
   )
 }

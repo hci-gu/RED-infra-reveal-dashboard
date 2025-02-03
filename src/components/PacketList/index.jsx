@@ -3,7 +3,7 @@ import { useAtomValue } from 'jotai'
 import React from 'react'
 import { filteredPacketsAtom } from '../../state/packets'
 
-const PacketListComponent = ({ packets }) => {
+export const PacketListComponent = ({ packets }) => {
   return (
     <ScrollArea style={{ height: '100%' }}>
       <Table
@@ -17,8 +17,10 @@ const PacketListComponent = ({ packets }) => {
         <thead>
           <tr>
             <th>Host</th>
-            <th>City</th>
+            {/* <th>City</th> */}
             <th>time</th>
+            <th>IN</th>
+            <th>OUT</th>
           </tr>
         </thead>
         <tbody>
@@ -28,8 +30,10 @@ const PacketListComponent = ({ packets }) => {
             .map((packet) => (
               <tr key={packet.id}>
                 <td style={{ overflowX: 'hidden' }}>{packet.host}</td>
-                <td>{packet.city ?? '-'}</td>
+                {/* <td>{packet.city ?? '-'}</td> */}
                 <td>{packet.timestamp.toLocaleTimeString()}</td>
+                <td>{packet.incomingBytes}</td>
+                <td>{packet.outgoingBytes}</td>
               </tr>
             ))}
         </tbody>

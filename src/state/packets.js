@@ -28,11 +28,12 @@ const distanceBetweenCoords = (lat1, lon1, lat2, lon2) => {
 export const mapPackets = (session, packets, existingMinDate) => {
   const minDate = existingMinDate
     ? existingMinDate
-    : Math.min(...packets.map((p) => new Date(p.timestamp).valueOf()))
+    : Math.min(...packets.map((p) => new Date(p.created).valueOf()))
 
   return packets
     .map((p) => {
-      const timestamp = new Date(p.timestamp)
+      console.log(p)
+      const timestamp = new Date(p.created)
       const startFrame = frameForDate(minDate, timestamp)
       const clientPos =
         session && session.lon && session.lat
@@ -41,17 +42,19 @@ export const mapPackets = (session, packets, existingMinDate) => {
 
       return {
         id: p.id,
-        ip: p.ip,
+        // ip: p.ip,
         host: p.host,
-        protocol: p.protocol,
-        method: p.method,
-        accept: p.accept,
+        // protocol: p.protocol,
+        direction: p.direction,
+        // accept: p.accept,
         country: p.country,
-        region: p.region,
+        // region: p.region,
         city: p.city,
-        userId: p.userId,
-        contentLength: p.contentLength,
-        responseTime: p.responseTime,
+        // userId: p.userId,
+        // contentLength: p.contentLength,
+        // responseTime: p.responseTime,
+        incomingBytes: p.incoming_bytes,
+        outgoingBytes: p.outgoing_bytes,
         pos: [p.lon, p.lat],
         clientPos,
         distance: distanceBetweenCoords(
@@ -65,7 +68,7 @@ export const mapPackets = (session, packets, existingMinDate) => {
         endFrame: startFrame + 4 * FPS,
         // displayTilt: 0,
         displayTilt:
-          p.method === 'GET' ? Math.random() * 45 : Math.random() * -45,
+          p.direction === 'incoming' ? Math.random() * 45 : Math.random() * -45,
       }
     })
     .filter((p) => p.pos[0] && p.pos[1])

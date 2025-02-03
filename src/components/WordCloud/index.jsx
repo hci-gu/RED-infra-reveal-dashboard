@@ -67,8 +67,6 @@ function WordCloudComponent({ width, height, packets }) {
             )
           }
 
-          console.log(cloudWords)
-
           return cloudWords.map((w, i) => (
             <Text
               key={w.text}
@@ -101,12 +99,7 @@ export const MemoizedWordCloud = React.memo(
 export default function WordCloud() {
   const packets = useAtomValue(filteredPacketsAtom)
 
-  if (!packets.length || packets.length === 1)
-    return (
-      <Flex h="100%" w="100%">
-        <Text>No data</Text>
-      </Flex>
-    )
+  if (!packets.length || packets.length === 1) return null
 
   return (
     <ParentSize>
