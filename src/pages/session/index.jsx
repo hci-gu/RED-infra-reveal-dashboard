@@ -103,7 +103,6 @@ const DashboardWrapper = ({ isLive = false }) => {
 }
 
 const Session = () => {
-  console.log('Session')
   const session = useSession()
   const isLive = session && session.active
 

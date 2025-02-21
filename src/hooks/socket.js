@@ -22,14 +22,11 @@ export const useSocket = (session) => {
   useEffect(() => {
     const getPackets = async () => {
       let _packets = await pb.collection('packets').getFullList()
-      console.log('packets', _packets.length)
-      // _packets = _packets.filter((p) => p.id === 'km07febuytcg639')
 
       packets = _packets.reduce((acc, curr) => {
         if (traceRoutes[curr.host]) {
           curr.hops = traceRoutes[curr.host].hops
         }
-        // console.log('curr', curr)
 
         acc[curr.id] = curr
         return acc
@@ -72,13 +69,11 @@ export const useSocket = (session) => {
       if (action === 'create' || action === 'update') {
         if (traceRoutes[record.host]) {
           record.hops = traceRoutes[record.host].hops
-          console.log('packet updated with already existed traceroute')
         }
         packets[record.id] = record
       }
     })
     pb.collection('traceroutes').subscribe('*', ({ action, record }) => {
-      console.log('traceroute', action, record)
       if (action === 'create' || action === 'update') {
         const trace = {
           ...record,
@@ -91,9 +86,8 @@ export const useSocket = (session) => {
             })),
         }
         traceRoutes[record.domain] = trace
-        packets = _packets.reduce((acc, curr) => {
+        packets = Object.values(packets).reduce((acc, curr) => {
           if (traceRoutes[curr.host]) {
-            console.log('packet updated with hops')
             curr.hops = traceRoutes[curr.host].hops
           }
 
