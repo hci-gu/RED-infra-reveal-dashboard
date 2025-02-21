@@ -1,4 +1,4 @@
-export const FPS = 30
+export const FPS = 60
 export const frameDuration = 1000 / FPS
 
 export const packetsToFrameDuration = (packets, live = false) => {

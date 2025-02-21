@@ -22,6 +22,8 @@ import Clock from './Clock'
 import useCablesLayer from './CablesLayer'
 import { sessionAtom } from '../../state/sessions'
 import WordCloud, { MemoizedWordCloud } from '../WordCloud'
+import Clients from './Clients'
+import useArcLayer from './ArcLayer'
 
 const regionNames = new Intl.DisplayNames(['en'], { type: 'region' })
 
@@ -35,7 +37,7 @@ const cityForPointsAndPackets = (points, packets) => {
   )
   if (!matchingPacket) return null
   if (matchingPacket.city) return matchingPacket.city
-  return regionNames.of(matchingPacket.country)
+  return matchingPacket.country
 }
 
 const packetsForPoints = (points, packets) => {
@@ -86,7 +88,8 @@ export const Map = () => {
       setHeatMapInfo(info)
     }
   )
-  const arcLayer = useAnimatedArcLayer(zoom)
+  const animatedArcLayer = useAnimatedArcLayer(zoom)
+  const arcLayer = useArcLayer(zoom)
   const dataCenterLayer = useDataCenterLayer(settings)
   const cablesLayer = useCablesLayer()
 
@@ -103,7 +106,7 @@ export const Map = () => {
       }}
     >
       <LayerToggles />
-      {/* <Clients /> */}
+      <Clients />
       <Clock />
       <DeckGL
         views={settings.globe ? new GlobeView() : null}
@@ -111,6 +114,7 @@ export const Map = () => {
         layers={[
           ...(settings.globe ? globeLayers : []),
           settings.heatmap ? hexagonLayer : null,
+          settings.packets ? animatedArcLayer : null,
           settings.packets ? arcLayer : null,
           settings.cables ? cablesLayer : null,
           dataCenterLayer,

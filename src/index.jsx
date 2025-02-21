@@ -2,9 +2,7 @@ import { Global, MantineProvider } from '@mantine/core'
 import { useAtomValue } from 'jotai'
 import React from 'react'
 import * as ReactDOMClient from 'react-dom/client'
-import { createClient, Provider } from 'urql'
 import App from './App'
-import CMSPageRoutes from './components/CMSPageRoutes'
 import { darkModeAtom } from './state/app'
 
 const AppWithTheme = () => {
@@ -44,18 +42,11 @@ const AppWithTheme = () => {
   )
 }
 
-const client = createClient({
-  url: `${import.meta.env.VITE_API_URL}`,
-})
-
 const Root = () => {
   return (
-    <>
-      <Provider value={client}>
-        <AppWithTheme />
-        <CMSPageRoutes />
-      </Provider>
-    </>
+    <div>
+      <AppWithTheme />
+    </div>
   )
 }
 

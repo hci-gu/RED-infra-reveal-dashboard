@@ -3,8 +3,8 @@ import { MaskExtension } from '@deck.gl/extensions'
 
 const material = {
   ambient: 0.64,
-  diffuse: 0.5,
-  shininess: 1000,
+  diffuse: 0.6,
+  shininess: 32,
   specularColor: [51, 51, 51],
 }
 
@@ -21,7 +21,7 @@ const upperPercentile = 100
 const coverage = 1
 
 const radiusForZoom = (zoom, globe) => {
-  const multi = globe ? 1 : 2
+  const multi = globe ? 1 : 1
   if (zoom > 8) return 1000
   if (zoom > 6.5) return 5000
   if (zoom > 5) return 10000 * multi
@@ -47,11 +47,19 @@ const useHexagonLayer = (
   globe = false,
   onClick = () => {}
 ) => {
+  const data = []
+  packets.forEach((p) => {
+    // data.push([p.lon, p.lat, 0])
+    p.hops.forEach((h) => {
+      data.push([h.lon, h.lat, 0])
+    })
+  })
+
   return new HexagonLayer({
     id: 'heatmap',
     colorRange,
     coverage,
-    data: packets.map((p) => [p.pos[0], p.pos[1], 0]),
+    data,
     elevationRange: elevationRangeForZoom(zoom),
     // extensions: [new MaskExtension()],
     // maskId: 'geofence',

@@ -1,8 +1,9 @@
 import { Checkbox, Flex, Popover, Select, Slider, Text } from '@mantine/core'
 import { IconSettings } from '@tabler/icons'
-import { useAtom } from 'jotai'
+import { useAtom, useAtomValue } from 'jotai'
 import React, { useState, forwardRef } from 'react'
 import {
+  activeViewAtom,
   darkModeAtom,
   playbackRateAtom,
   settingsOpenedAtom,
@@ -83,6 +84,24 @@ const Toggle = ({ field, label }) => {
   )
 }
 
+const ActiveViewSelect = () => {
+  const [activeView, set] = useAtom(activeViewAtom)
+
+  return (
+    <Select
+      label="Active view"
+      data={[
+        { label: 'Map', value: 'map' },
+        { label: 'List', value: 'list' },
+        { label: 'Hosts', value: 'hosts' },
+        { label: 'Traceroutes', value: 'network-map' },
+      ]}
+      value={activeView}
+      onChange={(value) => set(value)}
+    />
+  )
+}
+
 const MapDetailSelect = () => {
   const [{ detailLevel }, set] = useAtom(mapSettingsAtom)
 
@@ -155,6 +174,7 @@ const OpenDashboardSettingsButton = forwardRef((props, ref) => {
 
 const DashboardSettings = () => {
   const [opened, setOpened] = useAtom(settingsOpenedAtom)
+
   return (
     <Popover
       opened={opened}
@@ -170,6 +190,7 @@ const DashboardSettings = () => {
       <Popover.Dropdown p="sm">
         <Flex direction="column" gap="xs">
           <h3 style={{ margin: 0 }}>Settings</h3>
+          <ActiveViewSelect />
           <Flex w="100%" gap="xs">
             <DarkModeToggle />
             <PlayBackRate />

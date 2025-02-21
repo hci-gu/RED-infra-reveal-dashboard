@@ -1,8 +1,5 @@
-import { Anchor, Flex } from '@mantine/core'
 import React from 'react'
-import { useSessions } from '../../hooks/api'
 import { RichText } from 'prismic-reactjs'
-
 import styled from '@emotion/styled'
 import { useAtomValue } from 'jotai'
 import { cmsContentAtom } from '../../state/app'

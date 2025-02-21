@@ -1,15 +1,31 @@
-import { Card, Container, Flex, Grid } from '@mantine/core'
+import { Card, Checkbox, Container, Flex, Grid, Text } from '@mantine/core'
 import React from 'react'
 import DashboardSettings from '../../components/DashboardSettings'
 import LineChart from '../../components/LineChart'
 import { Logo } from '../../components/Logo'
 import Map from '../../components/Map'
 import PacketList from '../../components/PacketList'
-import PieChart from '../../components/PieChart'
-import CategorySelect from '../../components/PieChart/CategorySelect'
 import Statistics from '../../components/Statistics'
-import TagSelect from '../../components/TagSelect'
+import NetworkMap from '../../components/NetworkMap'
 import WordCloud from '../../components/WordCloud'
+import { useAtom, useAtomValue } from 'jotai'
+import { activeViewAtom } from '../../state/app'
+import IncomingOutgoingPackets from '../../components/IncomingOutgoingPackets'
+import Hosts from '../../components/Hosts'
+import { activePacketsToggleAtom } from '../../state/packets'
+
+const ActivePacketsToggle = () => {
+  const [checked, set] = useAtom(activePacketsToggleAtom)
+
+  return (
+    <Checkbox
+      h={20}
+      label="Only show active"
+      checked={checked}
+      onChange={(e) => set(e.currentTarget.checked)}
+    />
+  )
+}
 
 const TopRow = () => {
   return (
@@ -21,7 +37,7 @@ const TopRow = () => {
               <Logo small />
               <DashboardSettings />
             </Flex>
-            <TagSelect />
+            <ActivePacketsToggle />
           </Flex>
         </Card>
       </Grid.Col>
@@ -40,26 +56,29 @@ const TopRow = () => {
 }
 
 const Dashboard = () => {
+  const activeView = useAtomValue(activeViewAtom)
+
   return (
     <Grid columns={12} p="md" gutter="md" w="100%">
       <TopRow />
       <Grid.Col span={9}>
-        <Map />
+        {activeView === 'map' && <Map />}
+        {activeView === 'hosts' && <Hosts />}
+        {activeView === 'network-map' && <NetworkMap />}
       </Grid.Col>
-      <Grid.Col span={3}>
-        <Statistics />
-        <Card mt="md" h={'calc(25vh + 80px);'}>
-          <Flex direction="column" gap="xs">
-            <CategorySelect />
-            <Container w="100%" h={'25vh'}>
-              <PieChart />
-            </Container>
-          </Flex>
-        </Card>
-        <Card mt="md" h="calc(100vh - 640px);" p="xs">
-          <PacketList />
-        </Card>
-      </Grid.Col>
+      {activeView !== 'list' && (
+        <Grid.Col span={3}>
+          <Statistics />
+          <Card mt="md" h="calc(100vh - 400px);" p="xs">
+            <PacketList />
+          </Card>
+        </Grid.Col>
+      )}
+      {activeView === 'list' && (
+        <Grid.Col span={12}>
+          <IncomingOutgoingPackets />
+        </Grid.Col>
+      )}
     </Grid>
   )
 }

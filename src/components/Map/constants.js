@@ -11,18 +11,18 @@ import { SphereGeometry } from '@luma.gl/core'
 
 const ambientLight = new AmbientLight({
   color: [255, 255, 255],
-  intensity: 0.4,
+  intensity: 0.8,
 })
 export const sunLight = new SunLight({
   // bright orange
   color: [235, 200, 185],
   // color: [255, 255, 255],
-  intensity: 4.0,
+  intensity: 3.0,
   timestamp: 0,
 })
 const cameraLight = new CameraLight({
   color: [255, 255, 255],
-  intensity: 2.0,
+  intensity: 1.0,
 })
 
 export const getInitialViewState = ({

@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import moment from 'moment'
-import * as api from '../../hooks/api'
 import { useLinkClickHandler } from 'react-router-dom'
 import humanizeDuration from 'humanize-duration'
 
@@ -10,6 +9,7 @@ import { RichText } from 'prismic-reactjs'
 import { mobile } from '../../utils/layout'
 import { Button } from '@mantine/core'
 import { IconCheck, IconPlus } from '@tabler/icons'
+import { stopSesion, useSession, useSessions } from '../../state/pocketbase'
 
 const Container = styled.div`
   z-index: 2;
@@ -191,20 +191,18 @@ const displayDuration = (session) =>
 
 const Session = ({ session }) => {
   const handleClick = useLinkClickHandler(`/session/${session.id}`)
-  const [, updateSession] = api.useUpdateSession()
 
   return (
     <SessionContainer onClick={handleClick}>
       <ImageContainer>
         <img src={imageUrlForSession(session)}></img>
         <span style={{ fontWeight: 200 }}>
-          {moment(session.start).format('YYYY-MM-DD')} -
-          {session.end && ` ${displayDuration(session)}`}
+          {moment(session.created).format('YYYY-MM-DD HH:mm')}
         </span>
       </ImageContainer>
       <TextContainer>
         <strong>
-          {!session.end && (
+          {session.active && (
             <LiveIndicator>
               <div />
             </LiveIndicator>
@@ -212,7 +210,7 @@ const Session = ({ session }) => {
           {session.name ? session.name : `Session ${session.id}`}
         </strong>
       </TextContainer>
-      {!session.end && (
+      {session.active && (
         <Button
           shape="round"
           style={{ backgroundColor: '#2d2d2d' }}
@@ -220,10 +218,7 @@ const Session = ({ session }) => {
           onClick={(e) => {
             e.preventDefault()
             e.stopPropagation()
-            updateSession({
-              id: session.id,
-              data: { end: new Date().toISOString() },
-            })
+            stopSesion(session.id)
           }}
         >
           Stop
@@ -258,8 +253,8 @@ const LoadingIndicator = styled.div`
 `
 
 const SessionList = ({ title }) => {
-  const sessions = api.useSessions()
-  const [, createSession] = api.useCreateSession()
+  const sessions = useSessions()
+  // const [, createSession] = api.useCreateSession()
   const allSessionsDone = sessions.every((s) => !!s.end)
 
   return (
