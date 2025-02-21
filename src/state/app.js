@@ -6,7 +6,7 @@ export const darkModeAtom = atom(true)
 
 export const playbackRateAtom = atom(1)
 
-export const activeViewAtom = atom('hosts')
+export const activeViewAtom = atom('map')
 
 export const languageAtom = atom('en-us')
 

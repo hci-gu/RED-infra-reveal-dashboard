@@ -11,6 +11,7 @@ import { Group } from '@visx/group'
 import { LegendOrdinal } from '@visx/legend'
 import { scaleBand, scaleLinear, scaleOrdinal } from '@visx/scale'
 import { withTooltip, Tooltip, defaultStyles } from '@visx/tooltip'
+import { displayBytes } from '../../utils/data'
 
 // Tooltip styling
 const tooltipStyles = {
@@ -20,6 +21,7 @@ const tooltipStyles = {
 }
 
 // Returns [{ host, incoming, outgoing }, ...]
+// Now sums up the bytes from the packets instead of counting them.
 function groupPacketsByHost(packets) {
   const map = {}
   for (const pkt of packets) {
@@ -27,11 +29,9 @@ function groupPacketsByHost(packets) {
     if (!map[h]) {
       map[h] = { host: h, incoming: 0, outgoing: 0 }
     }
-    if (pkt.direction === 'incoming') {
-      map[h].incoming++
-    } else {
-      map[h].outgoing++
-    }
+    // Aggregate by adding the bytes for each packet.
+    map[h].incoming += pkt.incomingBytes || 0
+    map[h].outgoing += pkt.outgoingBytes || 0
   }
   return Object.values(map)
 }
@@ -41,7 +41,7 @@ function BarChartBase({
   packets,
   width = 600,
   height = 400,
-  margin = { top: 30, right: 20, bottom: 50, left: 200 },
+  margin = { top: 30, right: 20, bottom: 10, left: 225 },
   tooltipOpen,
   tooltipLeft,
   tooltipTop,
@@ -49,7 +49,7 @@ function BarChartBase({
   hideTooltip,
   showTooltip,
 }) {
-  // Aggregate and create chart data, then sort descending by total
+  // Aggregate and create chart data, then sort descending by total bytes
   const data = React.useMemo(() => {
     const grouped = groupPacketsByHost(packets).sort(
       (a, b) => b.incoming + b.outgoing - (a.incoming + a.outgoing)
@@ -59,7 +59,7 @@ function BarChartBase({
     return grouped.slice(0, MAX_BARS)
   }, [packets])
 
-  // The two stacked keys
+  // The two stacked keys remain the same
   const keys = ['incoming', 'outgoing']
 
   // Color scale
@@ -72,7 +72,7 @@ function BarChartBase({
   const xMax = width - margin.left - margin.right
   const yMax = height - margin.top - margin.bottom
 
-  // We'll scale horizontally from 0..max(incoming+outgoing)
+  // Scale horizontally from 0 to max total bytes across hosts
   const maxVal = Math.max(...data.map((d) => d.incoming + d.outgoing))
   const xScale = scaleLinear({
     domain: [0, maxVal],
@@ -83,11 +83,9 @@ function BarChartBase({
   // Each host on the Y-axis
   const yScale = scaleBand({
     domain: data.map((d) => d.host),
-    padding: 0.2,
+    padding: 0.1,
     range: [0, yMax],
   })
-
-  let tooltipTimeout
 
   return (
     <div style={{ position: 'relative' }}>
@@ -104,10 +102,10 @@ function BarChartBase({
             {(barStacks) =>
               barStacks.map((barStack) =>
                 barStack.bars.map((bar) => {
-                  // total for this host (row)
+                  // total bytes for this host (row)
                   const total = bar.bar.data.incoming + bar.bar.data.outgoing
 
-                  // We'll only render the total once, on the "outgoing" segment
+                  // Render the total only once, on the "outgoing" segment
                   const isOutgoing = bar.key === 'outgoing'
 
                   return (
@@ -118,17 +116,17 @@ function BarChartBase({
                         width={bar.width}
                         height={bar.height}
                         fill={bar.color}
-                        // ... your tooltip / event handlers here ...
+                        // ... your tooltip / event handlers here if needed ...
                       />
                       {isOutgoing && (
                         <text
-                          x={bar.x + bar.width + 4} // a bit to the right of the bar
+                          x={bar.x + bar.width + 4} // position text a bit to the right of the bar
                           y={bar.y + bar.height / 2} // vertically centered
                           fill="#fff" // white text
                           fontSize={12}
                           alignmentBaseline="middle"
                         >
-                          {total}
+                          {displayBytes(total)}
                         </text>
                       )}
                     </React.Fragment>
@@ -152,8 +150,8 @@ function BarChartBase({
             })}
           />
 
-          {/* Bottom axis: numeric scale of packets */}
-          <AxisBottom
+          {/* Bottom axis: numeric scale of bytes */}
+          {/* <AxisBottom
             top={yMax}
             scale={xScale}
             tickLabelProps={() => ({
@@ -161,7 +159,7 @@ function BarChartBase({
               fontSize: 11,
               textAnchor: 'middle',
             })}
-          />
+          /> */}
         </Group>
       </svg>
 
@@ -189,7 +187,7 @@ function BarChartBase({
           <div style={{ color: colorScale(tooltipData.key) }}>
             <strong>{tooltipData.key.toUpperCase()}</strong>
           </div>
-          <div>{tooltipData.value} packets</div>
+          <div>{tooltipData.value} bytes</div>
           <small>{tooltipData.host}</small>
         </Tooltip>
       )}
@@ -208,7 +206,7 @@ function HostsComp({ packets }) {
 
   return (
     <Card style={{ height: height - 225, overflow: 'auto' }}>
-      {/* Bar chart of aggregated data, descending by total, white text */}
+      {/* Bar chart of aggregated data, descending by total bytes, with white text */}
       <BarChart packets={packets} width={width - 600} height={height - 300} />
     </Card>
   )
@@ -221,5 +219,5 @@ const MemoizedHosts = React.memo(HostsComp, (prev, next) => {
 export default function Hosts() {
   // Read packets from the Jotai atom
   const packets = useAtomValue(filteredPacketsAtom)
-  return <MemoizedHosts packets={packets} />
+  return <HostsComp packets={packets} />
 }

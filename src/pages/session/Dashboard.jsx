@@ -1,19 +1,31 @@
-import { Card, Container, Flex, Grid, Text } from '@mantine/core'
+import { Card, Checkbox, Container, Flex, Grid, Text } from '@mantine/core'
 import React from 'react'
 import DashboardSettings from '../../components/DashboardSettings'
 import LineChart from '../../components/LineChart'
 import { Logo } from '../../components/Logo'
 import Map from '../../components/Map'
 import PacketList from '../../components/PacketList'
-import PieChart from '../../components/PieChart'
-import CategorySelect from '../../components/PieChart/CategorySelect'
 import Statistics from '../../components/Statistics'
-import TagSelect from '../../components/TagSelect'
+import NetworkMap from '../../components/NetworkMap'
 import WordCloud from '../../components/WordCloud'
-import { useAtomValue } from 'jotai'
+import { useAtom, useAtomValue } from 'jotai'
 import { activeViewAtom } from '../../state/app'
 import IncomingOutgoingPackets from '../../components/IncomingOutgoingPackets'
 import Hosts from '../../components/Hosts'
+import { activePacketsToggleAtom } from '../../state/packets'
+
+const ActivePacketsToggle = () => {
+  const [checked, set] = useAtom(activePacketsToggleAtom)
+
+  return (
+    <Checkbox
+      h={20}
+      label="Only show active"
+      checked={checked}
+      onChange={(e) => set(e.currentTarget.checked)}
+    />
+  )
+}
 
 const TopRow = () => {
   return (
@@ -25,7 +37,7 @@ const TopRow = () => {
               <Logo small />
               <DashboardSettings />
             </Flex>
-            <TagSelect />
+            <ActivePacketsToggle />
           </Flex>
         </Card>
       </Grid.Col>
@@ -52,6 +64,7 @@ const Dashboard = () => {
       <Grid.Col span={9}>
         {activeView === 'map' && <Map />}
         {activeView === 'hosts' && <Hosts />}
+        {activeView === 'network-map' && <NetworkMap />}
       </Grid.Col>
       {activeView !== 'list' && (
         <Grid.Col span={3}>

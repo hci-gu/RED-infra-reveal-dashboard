@@ -2,7 +2,7 @@ import { Card, Chip, Flex } from '@mantine/core'
 import { useAtom, useAtomValue } from 'jotai'
 import React from 'react'
 import { clientsAtom, selectedClientsAtom } from '../../state/packets'
-import { colorForUserId } from '../../utils/color'
+import { colorForUserId, getClientColor } from '../../utils/color'
 
 const Clients = () => {
   const clients = useAtomValue(clientsAtom)
@@ -26,7 +26,6 @@ const Clients = () => {
             )
           }
           size="xs"
-          color={colorForUserId(client)}
         >{`Client ${i}`}</Chip>
       ))}
     </Flex>

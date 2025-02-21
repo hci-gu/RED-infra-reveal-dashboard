@@ -8,7 +8,7 @@ import {
 import { scaleLinear } from '@visx/scale'
 import { Line, LinePath } from '@visx/shape'
 import ParentSize from '@visx/responsive/lib/components/ParentSizeModern'
-import { curveBasis } from '@visx/curve'
+import { curveBundle } from '@visx/curve'
 import { dateForFrame } from '../../utils/remotion'
 import { AxisBottom } from '@visx/axis'
 import { darkModeAtom } from '../../state/app'
@@ -121,7 +121,7 @@ const LineChartComponent = ({ width, height, packets, padding = 16 }) => {
         data={buckets}
         x={(d) => xScale(d.date.valueOf())}
         y={(d) => yScale(d.value)}
-        curve={curveBasis}
+        curve={curveBundle}
       />
       <FrameLine
         xScale={xScale}

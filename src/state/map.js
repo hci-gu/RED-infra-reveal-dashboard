@@ -16,6 +16,7 @@ export const mapSettingsAtom = atom(
     dataCenters: null,
     heatmap: true,
     packets: true,
+    activePackets: true,
     cameraLight: true,
     cables: false,
     borderWidth: 15000,

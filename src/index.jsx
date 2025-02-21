@@ -42,10 +42,6 @@ const AppWithTheme = () => {
   )
 }
 
-// const client = createClient({
-//   url: `${import.meta.env.VITE_API_URL}`,
-// })
-
 const Root = () => {
   return (
     <div>

@@ -5,12 +5,12 @@ import { IconPlayerPause, IconPlayerPlay, IconPoint } from '@tabler/icons'
 import { useAtom, useAtomValue } from 'jotai'
 import React, { useCallback, useEffect, useRef } from 'react'
 import { useCurrentFrame } from 'remotion'
-import { useCategoriesAndTags, usePackets, useSession } from '../../hooks/api'
 import { useSocket } from '../../hooks/socket'
 import { playbackRateAtom } from '../../state/app'
 import { frameAtom, mapPackets, packetsAtom } from '../../state/packets'
 import { FPS, packetsToFrameDuration } from '../../utils/remotion'
 import Dashboard from './Dashboard'
+import { useSession } from '../../state/pocketbase'
 
 const InitPackets = ({ session, packets }) => {
   const [, setPackets] = useAtom(packetsAtom)
@@ -66,7 +66,7 @@ const DashboardWrapper = ({ isLive = false }) => {
             onClick={(e) => {
               ref.current.seekTo(Infinity)
               setTimeout(() => {
-                ref.current.seekTo(ref.current.getCurrentFrame() - FPS * 2)
+                ref.current.seekTo(ref.current.getCurrentFrame() - FPS * 5)
                 ref.current.play()
               }, 1000)
               e.stopPropagation()
@@ -80,6 +80,8 @@ const DashboardWrapper = ({ isLive = false }) => {
     )
   }, [])
 
+  const duration = packetsToFrameDuration(packets, isLive)
+
   return (
     <Player
       id="dashboard"
@@ -88,7 +90,7 @@ const DashboardWrapper = ({ isLive = false }) => {
       controls
       autoPlay
       spaceKeyToPlayOrPause
-      durationInFrames={packetsToFrameDuration(packets, isLive)}
+      durationInFrames={duration + 5 * FPS}
       fps={FPS}
       playbackRate={playbackRate}
       compositionWidth={width ? width : 1920}
@@ -101,21 +103,17 @@ const DashboardWrapper = ({ isLive = false }) => {
 }
 
 const Session = () => {
-  console.log('SESSION')
-  // useCategoriesAndTags()
+  console.log('Session')
   const session = useSession()
-  const { packets, fetching } = usePackets()
-
-  const isLive = session && !session.end
+  const isLive = session && session.active
 
   return (
     <>
-      {!!packets.length && <InitPackets session={session} packets={packets} />}
       <div style={{ position: 'relative', width: '100%', height: '100%' }}>
-        <LoadingOverlay visible={fetching} />
+        <LoadingOverlay visible={!session} />
         <DashboardWrapper isLive={isLive} />
       </div>
-      {isLive && <SocketListener session={session} />}
+      <SocketListener session={session} />
     </>
   )
 }

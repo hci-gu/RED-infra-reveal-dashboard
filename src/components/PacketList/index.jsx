@@ -2,6 +2,8 @@ import { ScrollArea, Table } from '@mantine/core'
 import { useAtomValue } from 'jotai'
 import React from 'react'
 import { filteredPacketsAtom } from '../../state/packets'
+import { displayBytes } from '../../utils/data'
+import { IconCircle } from '@tabler/icons'
 
 export const PacketListComponent = ({ packets }) => {
   return (
@@ -12,12 +14,12 @@ export const PacketListComponent = ({ packets }) => {
         horizontalSpacing={4}
         striped
         withColumnBorders
-        style={{ tableLayout: 'fixed' }}
+        // style={{ tableLayout: 'fixed' }}
       >
         <thead>
           <tr>
+            <th></th>
             <th>Host</th>
-            {/* <th>City</th> */}
             <th>time</th>
             <th>IN</th>
             <th>OUT</th>
@@ -29,11 +31,20 @@ export const PacketListComponent = ({ packets }) => {
             .slice(0, 25)
             .map((packet) => (
               <tr key={packet.id}>
+                <td style={{ width: 10 }}>
+                  <IconCircle
+                    style={{
+                      width: 8,
+                      height: 8,
+                      color: packet.active ? 'lime' : 'red',
+                    }}
+                  />
+                </td>
                 <td style={{ overflowX: 'hidden' }}>{packet.host}</td>
                 {/* <td>{packet.city ?? '-'}</td> */}
                 <td>{packet.timestamp.toLocaleTimeString()}</td>
-                <td>{packet.incomingBytes}</td>
-                <td>{packet.outgoingBytes}</td>
+                <td>{displayBytes(packet.incomingBytes)}</td>
+                <td>{displayBytes(packet.incomingBytes)}</td>
               </tr>
             ))}
         </tbody>

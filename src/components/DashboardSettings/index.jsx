@@ -94,6 +94,7 @@ const ActiveViewSelect = () => {
         { label: 'Map', value: 'map' },
         { label: 'List', value: 'list' },
         { label: 'Hosts', value: 'hosts' },
+        { label: 'Traceroutes', value: 'network-map' },
       ]}
       value={activeView}
       onChange={(value) => set(value)}
