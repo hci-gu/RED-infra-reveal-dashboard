@@ -2,11 +2,11 @@ import { ActionIcon, Button, Flex, LoadingOverlay, Text } from '@mantine/core'
 import { useViewportSize } from '@mantine/hooks'
 import { Player } from '@remotion/player'
 import { IconPlayerPause, IconPlayerPlay, IconPoint } from '@tabler/icons'
-import { useAtom, useAtomValue } from 'jotai'
+import { useAtom, useAtomValue, useSetAtom } from 'jotai'
 import React, { useCallback, useEffect, useRef } from 'react'
 import { useCurrentFrame } from 'remotion'
 import { useSocket } from '../../hooks/socket'
-import { playbackRateAtom } from '../../state/app'
+import { playbackRateAtom, playerRefAtom } from '../../state/app'
 import { frameAtom, mapPackets, packetsAtom } from '../../state/packets'
 import { FPS, packetsToFrameDuration } from '../../utils/remotion'
 import Dashboard from './Dashboard'
@@ -48,6 +48,7 @@ const PlayerStuff = () => {
 
 const DashboardWrapper = ({ isLive = false }) => {
   const ref = useRef()
+  const setPlayerRef = useSetAtom(playerRefAtom)
   const packets = useAtomValue(packetsAtom)
   const playbackRate = useAtomValue(playbackRateAtom)
   const { width, height } = useViewportSize()
@@ -79,6 +80,10 @@ const DashboardWrapper = ({ isLive = false }) => {
       </Flex>
     )
   }, [])
+
+  useEffect(() => {
+    setPlayerRef(ref)
+  }, [ref])
 
   const duration = packetsToFrameDuration(packets, isLive)
 

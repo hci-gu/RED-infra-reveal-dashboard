@@ -17,8 +17,10 @@ specifiers:
   '@tabler/icons': ^1.115.0
   '@visx/axis': ^2.14.0
   '@visx/curve': ^2.1.0
+  '@visx/drag': ^3.12.0
   '@visx/group': ^2.10.0
   '@visx/legend': ^3.12.0
+  '@visx/network': ^3.12.0
   '@visx/responsive': ^2.10.0
   '@visx/scale': ^2.2.2
   '@visx/shape': ^2.12.2
@@ -68,8 +70,10 @@ dependencies:
   '@tabler/icons': 1.119.0_biqbaboplfbrettd7655fr4n2y
   '@visx/axis': 2.18.0_react@18.2.0
   '@visx/curve': 2.17.0
+  '@visx/drag': 3.12.0_react@18.2.0
   '@visx/group': 2.17.0_react@18.2.0
   '@visx/legend': 3.12.0_react@18.2.0
+  '@visx/network': 3.12.0_react@18.2.0
   '@visx/responsive': 2.17.0_react@18.2.0
   '@visx/scale': 2.18.0
   '@visx/shape': 2.18.0_react@18.2.0
@@ -2064,6 +2068,25 @@ packages:
       d3-shape: 1.3.7
     dev: false
 
+  /@visx/drag/3.12.0_react@18.2.0:
+    resolution: {integrity: sha512-LXOoPVw//YPjpYhDJYBsCYDuv1QimsXjDV98duH0aCy4V94ediXMQpe2wHq4pnlDobLEB71FjOZMFrbFmqtERg==}
+    peerDependencies:
+      react: ^16.8.0-0 || ^17.0.0-0 || ^18.0.0-0
+    dependencies:
+      '@types/react': 18.2.60
+      '@visx/event': 3.12.0
+      '@visx/point': 3.12.0
+      prop-types: 15.8.1
+      react: 18.2.0
+    dev: false
+
+  /@visx/event/3.12.0:
+    resolution: {integrity: sha512-9Lvw6qJ0Fi+y1vsC1WspfdIKCxHTb7oy59Uql1uBdPGT8zChP0vuxW0jQNQRDbKgoefj4pCXAFi8+MF1mEtVTw==}
+    dependencies:
+      '@types/react': 18.2.60
+      '@visx/point': 3.12.0
+    dev: false
+
   /@visx/group/2.17.0_react@18.2.0:
     resolution: {integrity: sha512-60Y2dIKRh3cp/Drpq//wM067ZNrnCcvFCXufPgIihv0Ix8O7oMsYxu3ch4XUMjks+U2IAZQr5Dnc+C9sTQFkhw==}
     peerDependencies:
@@ -2099,8 +2122,24 @@ packages:
       react: 18.2.0
     dev: false
 
+  /@visx/network/3.12.0_react@18.2.0:
+    resolution: {integrity: sha512-mVWF9TQVpe6Qz95IJ+Pm+FB6xhdjzFGRKK7/qQFhjRloIJqVZkChAiBIua04Ux8BeyCt37wdFgQKFl6C2u3DXA==}
+    peerDependencies:
+      react: ^16.3.0-0 || ^17.0.0-0 || ^18.0.0-0
+    dependencies:
+      '@types/react': 18.2.60
+      '@visx/group': 3.12.0_react@18.2.0
+      classnames: 2.5.1
+      prop-types: 15.8.1
+      react: 18.2.0
+    dev: false
+
   /@visx/point/2.17.0:
     resolution: {integrity: sha512-fUdGQBLGaSVbFTbQ6k+1nPisbqYjTjAdo9FhlwLd3W3uyXN/39Sx2z3N2579sVNBDzmCKdYNQIU0HC+/3Vqo6w==}
+    dev: false
+
+  /@visx/point/3.12.0:
+    resolution: {integrity: sha512-I6UrHoJAEVbx3RORQNupgTiX5EzjuZpiwLPxn8L2mI5nfERotPKi1Yus12Cq2WtXqEBR/WgqTnoImlqOXBykcA==}
     dev: false
 
   /@visx/responsive/2.17.0_react@18.2.0:

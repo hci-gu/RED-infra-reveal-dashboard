@@ -9,25 +9,50 @@ import Statistics from '../../components/Statistics'
 import NetworkMap from '../../components/NetworkMap'
 import WordCloud from '../../components/WordCloud'
 import { useAtom, useAtomValue } from 'jotai'
-import { activeViewAtom } from '../../state/app'
+import {
+  activeViewAtom,
+  followModeAtom,
+  onlyShowSelectedAtom,
+} from '../../state/app'
 import IncomingOutgoingPackets from '../../components/IncomingOutgoingPackets'
 import Hosts from '../../components/Hosts'
-import { activePacketsToggleAtom } from '../../state/packets'
+import {
+  activePacketsToggleAtom,
+  selectedPacketAtom,
+} from '../../state/packets'
+import SinglePacketTimeline from '../../components/SinglePacketTimeline'
 
 const ActivePacketsToggle = () => {
   const [checked, set] = useAtom(activePacketsToggleAtom)
+  const [followMode, setFollowMode] = useAtom(followModeAtom)
+  const [onlyShowSelected, setOnlyShowSelected] = useAtom(onlyShowSelectedAtom)
 
   return (
-    <Checkbox
-      h={20}
-      label="Only show active"
-      checked={checked}
-      onChange={(e) => set(e.currentTarget.checked)}
-    />
+    <Flex direction="column" align="start" justify="center" gap="xs">
+      <Checkbox
+        h={20}
+        label="Only show active"
+        checked={checked}
+        onChange={(e) => set(e.currentTarget.checked)}
+      />
+      <Checkbox
+        h={20}
+        label="Only show selected"
+        checked={onlyShowSelected}
+        onChange={(e) => setOnlyShowSelected(e.currentTarget.checked)}
+      />
+      <Checkbox
+        h={20}
+        label="Follow active packet"
+        checked={followMode}
+        onChange={(e) => setFollowMode(e.currentTarget.checked)}
+      />
+    </Flex>
   )
 }
 
 const TopRow = () => {
+  const selectedPacket = useAtomValue(selectedPacketAtom)
   return (
     <>
       <Grid.Col span={2}>
@@ -43,7 +68,11 @@ const TopRow = () => {
       </Grid.Col>
       <Grid.Col span={7}>
         <Card h={'20vh'} p={0}>
-          <LineChart />
+          {selectedPacket ? (
+            <SinglePacketTimeline packet={selectedPacket} />
+          ) : (
+            <LineChart />
+          )}
         </Card>
       </Grid.Col>
       <Grid.Col span={3}>

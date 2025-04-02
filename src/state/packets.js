@@ -1,6 +1,7 @@
 import { atom } from 'jotai'
 import { dateForFrame, FPS, frameForDate } from '../utils/remotion'
 import { getClientColor } from '../utils/color'
+import { onlyShowSelectedAtom } from './app'
 
 const deg2rad = (deg) => {
   return deg * (Math.PI / 180)
@@ -43,6 +44,14 @@ export const mapPackets = (session, packets, existingMinDate) => {
           ? [session.lon, session.lat]
           : [11.91737, 57.69226]
 
+      const data = p.data.map((d) => ({
+        dir: d.dir,
+        bytes: d.bytes,
+        ts: new Date(d.ts),
+        frame: frameForDate(minDate, new Date(d.ts)),
+      }))
+      const lastData = data[data.length - 1]
+
       return {
         id: p.id,
         host: p.host,
@@ -51,12 +60,7 @@ export const mapPackets = (session, packets, existingMinDate) => {
         city: p.city,
         clientIp: p.client_ip,
         color: getClientColor(p.client_ip),
-        data: p.data.map((d) => ({
-          dir: d.dir,
-          bytes: d.bytes,
-          ts: new Date(d.ts),
-          frame: frameForDate(minDate, new Date(d.ts)),
-        })),
+        data,
         incomingBytes: p.data.reduce((acc, curr) => {
           if (curr.dir === 'in') {
             return acc + curr.bytes
@@ -80,7 +84,7 @@ export const mapPackets = (session, packets, existingMinDate) => {
         ),
         timestamp,
         startFrame,
-        endFrame: startFrame + 4 * FPS,
+        endFrame: lastData.frame + 4 * FPS,
         closed,
         closedFrame: frameForDate(minDate, closed),
       }
@@ -98,6 +102,7 @@ export const activePacketsToggleAtom = atom(false)
 export const apiPackets = atom([])
 
 export const packetsAtom = atom([])
+export const selectedPacketAtom = atom(null)
 export const traceRoutesAtom = atom([])
 
 export const activeClientsAtom = atom((get) => {
@@ -111,53 +116,84 @@ export const activeClientsAtom = atom((get) => {
   return Array.from(clients)
 })
 
+export const dataForPacket = (packet) => {
+  const data = []
+  for (let d of packet.data) {
+    const rand = deterministicRandom(d.ts.valueOf())
+    const displayTilt = d.dir === 'in' ? rand * 30 : rand * -30
+
+    let previousLocation = packet.clientPos
+    let startFrame = d.frame
+    // let totalDuration = 7.5 * FPS
+
+    let hops = d.dir === 'in' ? packet.hops : packet.hops.slice().reverse()
+
+    for (let hop of hops) {
+      const hopDurationInMillis = hop.duration
+      const hopDurationInFrames = Math.floor((hopDurationInMillis / 1000) * FPS)
+      const endFrame = startFrame + hopDurationInFrames
+      data.push({
+        ...d,
+        frame: startFrame,
+        endFrame,
+        startPos: previousLocation,
+        endPos: [hop.lon, hop.lat],
+        displayTilt: packet.selected ? 0 : displayTilt,
+        distance: packet.distance,
+        selected: packet.selected,
+      })
+      previousLocation = [hop.lon, hop.lat]
+      startFrame = endFrame
+    }
+    data.push({
+      ...d,
+      frame: startFrame,
+      endFrame: startFrame + 4 * FPS,
+      startPos: previousLocation,
+      endPos: packet.pos,
+      displayTilt: packet.selected ? 0 : displayTilt,
+      distance: packet.distance,
+      selected: packet.selected,
+    })
+  }
+  return data
+}
+
 export const dataAtom = atom((get) => {
-  const packets = get(packetsAtom)
-  // const minDate = Math.min(...packets.map((p) => new Date(p.created).valueOf()))
+  const packets = get(filteredPacketsAtom)
 
   const data = []
   for (let packet of packets) {
-    for (let d of packet.data) {
-      const rand = deterministicRandom(d.ts.valueOf())
-      const displayTilt = d.dir === 'in' ? rand * 30 : rand * -30
-
-      let previousLocation = packet.clientPos
-      let startFrame = d.frame
-      let totalDuration = 3 * FPS
-
-      let hops = d.dir === 'in' ? packet.hops : packet.hops.slice().reverse()
-
-      for (let hop of hops) {
-        const endFrame = startFrame + totalDuration / packet.hops.length
-        data.push({
-          ...d,
-          frame: startFrame,
-          endFrame,
-          startPos: previousLocation,
-          endPos: [hop.lon, hop.lat],
-          displayTilt,
-          distance: packet.distance,
-        })
-        previousLocation = [hop.lon, hop.lat]
-        startFrame = endFrame
-      }
-    }
+    data.push(...dataForPacket(packet))
   }
 
   return data
 })
 
+export const selectedDataAtom = atom((get) => {
+  const selectedPacket = get(selectedPacketAtom)
+
+  return selectedPacket ? dataForPacket(selectedPacket) : []
+})
+
 export const frameAtom = atom(0)
 
+const frameFraction = FPS / 5
+export const frameForSecond = atom((get) => {
+  const frame = get(frameAtom)
+  return Math.floor(frame / frameFraction) * frameFraction
+})
+
 export const filteredPacketsAtom = atom((get) => {
+  const selectedPacket = get(selectedPacketAtom)
   const packets = get(packetsAtom)
   const onlyShowActive = get(activePacketsToggleAtom)
   const clients = get(selectedClientsAtom)
-  const tags = get(selectedTagsAtom)
-  const frame = get(frameAtom)
+  const frame = get(frameForSecond)
 
   return packets
     .map((p) => {
+      p.selected = selectedPacket && selectedPacket.id === p.id
       p.active = p.startFrame <= frame && p.closedFrame + FPS * 3 >= frame
       return p
     })
@@ -166,12 +202,6 @@ export const filteredPacketsAtom = atom((get) => {
         return p.active
       }
       return p.startFrame <= frame
-    })
-    .filter((p) => {
-      const tagDomains = tags.reduce((domains, tag) => {
-        return [...domains, ...tag.domains]
-      }, [])
-      return tags.length === 0 || tagDomains.indexOf(p.host) !== -1
     })
     .filter((p) => clients.length === 0 || clients.indexOf(p.clientIp) !== -1)
     .map((p) => {
@@ -206,54 +236,6 @@ export const packetContentSizeAtom = atom((get) => {
   return packets.reduce((acc, curr) => {
     return acc + curr.incomingBytes + curr.outgoingBytes
   }, 0)
-})
-
-export const packetsInTag = (tag, packetsMap) => {
-  let found = 0
-  tag.domains.forEach((name) => {
-    if (packetsMap[name]) {
-      found += packetsMap[name]
-    }
-  })
-
-  return found
-}
-
-export const packetsByTag = atom((get) => {
-  const packets = get(filteredPacketsAtom)
-  const category = get(selectedCategoryAtom)
-  const tags = get(tagsAtom).filter(
-    (tag) => !category || tag.category?.name === category.name
-  )
-
-  if (!tags.length || !packets.length) {
-    return [{ type: 'other', value: 100 }]
-  }
-
-  const packetsMap = packets.reduce((acc, curr) => {
-    const domain = curr.host
-    if (acc[domain]) {
-      acc[domain] += 1
-    } else {
-      acc[domain] = 1
-    }
-    return acc
-  }, {})
-
-  const values = tags
-    .map((t) => ({
-      value: packetsInTag(t, packetsMap),
-      type: t.name,
-    }))
-    .filter((t) => t.value > 0)
-
-  return [
-    ...values,
-    {
-      type: 'other',
-      value: packets.length - values.reduce((acc, curr) => acc + curr.value, 0),
-    },
-  ]
 })
 
 export const clientsAtom = atom((get) => {

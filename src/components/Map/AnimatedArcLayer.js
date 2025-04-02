@@ -91,8 +91,7 @@ const heightForZoom = (zoom) => {
   return 0.5
 }
 
-const useAnimatedArcLayer = (zoom) => {
-  const data = useAtomValue(dataAtom)
+const useAnimatedArcLayer = (data, zoom) => {
   const frame = useAtomValue(frameAtom)
 
   return new AnimatedArcLayer({
@@ -105,11 +104,11 @@ const useAnimatedArcLayer = (zoom) => {
     getSourceTimestamp: (d) => d.frame,
     getTargetTimestamp: (d) => d.endFrame,
     getTilt: (d) => d.displayTilt,
-    getHeight: (d) => heightForZoom(zoom) * multiplierForDistance(d.distance),
+    getHeight: (d) => heightForZoom(zoom),
     getWidth: (d) => widthForZoom(zoom) * multiplierForBytes(d.bytes),
     timeRange: timeRangeForFrame(frame),
-    getSourceColor: [167, 29, 49],
-    getTargetColor: [167, 29, 49],
+    getSourceColor: (d) => (d.selected ? [0, 255, 0] : [167, 29, 49]),
+    getTargetColor: (d) => (d.selected ? [0, 255, 0] : [167, 29, 49]),
   })
 }
 

@@ -1,11 +1,13 @@
 import { ScrollArea, Table } from '@mantine/core'
-import { useAtomValue } from 'jotai'
+import { useAtom, useAtomValue } from 'jotai'
 import React from 'react'
-import { filteredPacketsAtom } from '../../state/packets'
+import { filteredPacketsAtom, selectedPacketAtom } from '../../state/packets'
 import { displayBytes } from '../../utils/data'
 import { IconCircle } from '@tabler/icons'
 
 export const PacketListComponent = ({ packets }) => {
+  const [selected, select] = useAtom(selectedPacketAtom)
+
   return (
     <ScrollArea style={{ height: '100%' }}>
       <Table
@@ -14,7 +16,6 @@ export const PacketListComponent = ({ packets }) => {
         horizontalSpacing={4}
         striped
         withColumnBorders
-        // style={{ tableLayout: 'fixed' }}
       >
         <thead>
           <tr>
@@ -30,7 +31,17 @@ export const PacketListComponent = ({ packets }) => {
             .sort((a, b) => b.timestamp - a.timestamp)
             .slice(0, 25)
             .map((packet) => (
-              <tr key={packet.id}>
+              <tr
+                key={packet.id}
+                onClick={() => {
+                  select(selected?.id == packet.id ? null : packet)
+                }}
+                style={{
+                  cursor: 'pointer',
+                  background:
+                    packet.id == selected?.id ? 'rgba(0, 0, 0, 0.5)' : null,
+                }}
+              >
                 <td style={{ width: 10 }}>
                   <IconCircle
                     style={{
