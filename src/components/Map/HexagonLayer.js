@@ -49,9 +49,10 @@ const useHexagonLayer = (
 ) => {
   const data = []
   packets.forEach((p) => {
+    data.push([p.pos[0], p.pos[1], 1])
     // data.push([p.lon, p.lat, 0])
     p.hops.forEach((h) => {
-      data.push([h.lon, h.lat, 0])
+      data.push([h.lon, h.lat, 1])
     })
   })
 

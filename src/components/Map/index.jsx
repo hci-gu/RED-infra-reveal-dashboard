@@ -1,6 +1,6 @@
-import React, { useMemo, useState } from 'react'
+import React, { use, useCallback, useEffect, useMemo, useState } from 'react'
 import { DeckGL } from 'deck.gl'
-import { _GlobeView as GlobeView } from '@deck.gl/core'
+import { FlyToInterpolator, _GlobeView as GlobeView } from '@deck.gl/core'
 import {
   createGlobeLayers,
   getInitialViewState,
@@ -8,27 +8,44 @@ import {
   sunLight,
 } from './constants'
 import { useAtomValue } from 'jotai'
-import { filteredPacketsAtom } from '../../state/packets'
+import {
+  dataAtom,
+  dataForPacket,
+  filteredPacketsAtom,
+  selectedPacketAtom,
+} from '../../state/packets'
 import { Card } from '@mantine/core'
 import useHexagonLayer from './HexagonLayer'
 import useAnimatedArcLayer from './AnimatedArcLayer'
 import { mapSettingsAtom } from '../../state/map'
 import BackgroundMap from './BackgroundMap'
-import { darkModeAtom } from '../../state/app'
+import {
+  darkModeAtom,
+  followModeAtom,
+  onlyShowSelectedAtom,
+} from '../../state/app'
 import { useViewportSize } from '@mantine/hooks'
 import useDataCenterLayer from './DataCenterLayer'
 import LayerToggles from './LayerToggles'
 import Clock from './Clock'
 import useCablesLayer from './CablesLayer'
 import { sessionAtom } from '../../state/sessions'
-import WordCloud, { MemoizedWordCloud } from '../WordCloud'
+import { MemoizedWordCloud } from '../WordCloud'
 import Clients from './Clients'
 import useArcLayer from './ArcLayer'
+import { useCurrentFrame } from 'remotion'
+import {
+  hopPositionAtFrame,
+  isSamePosition,
+  positionAtFrame,
+} from '../../utils/geo'
+import { FPS } from '../../utils/remotion'
 
 const regionNames = new Intl.DisplayNames(['en'], { type: 'region' })
 
 const cityForPointsAndPackets = (points, packets) => {
   if (!points || !packets) return null
+
   const uniquePoints = new Set(
     points.map((p) => `${p.source[0]}${p.source[1]}`)
   )
@@ -61,18 +78,94 @@ function getTooltip({ layer, object }, packets) {
   }
 }
 
+const FollowCamera = ({ viewState, setViewState }) => {
+  const selectedPacket = useAtomValue(selectedPacketAtom)
+  const [flyTo, setFlyTo] = useState(null)
+  const followMode = useAtomValue(followModeAtom)
+  const [position, setPosition] = useState(null)
+  const frame = useCurrentFrame()
+
+  const flyToLocation = useCallback(({ latitude, longitude, zoom }) => {
+    setViewState({
+      latitude,
+      longitude,
+      zoom,
+      pitch: 40.5,
+      transitionInterpolator: new FlyToInterpolator({ speed: 2 }),
+      transitionDuration: 'auto',
+    })
+  }, [])
+
+  useEffect(() => {
+    if (position) {
+      flyToLocation({
+        ...position,
+        zoom: 6,
+      })
+    }
+  }, [position])
+
+  useEffect(() => {
+    if (!selectedPacket || !followMode) return
+
+    const pos = hopPositionAtFrame(
+      dataForPacket(selectedPacket),
+      frame + FPS / 2
+    )
+    if (!position || (pos && !isSamePosition(pos, position))) {
+      setPosition(pos)
+    }
+  }, [position, selectedPacket, followMode, frame])
+
+  // useEffect(() => {
+  //   if (!flyTo) return
+
+  //   flyToLocation(flyTo)
+  // }, [flyTo])
+
+  // useEffect(() => {
+  //   if (!selectedPacket) {
+  //     flyToLocation(getInitialViewState({}))
+  //     return
+  //   }
+
+  //   flyToLocation({
+  //     latitude: selectedPacket.pos[1],
+  //     longitude: selectedPacket.pos[0],
+  //     zoom: 8,
+  //   })
+  // }, [selectedPacket])
+
+  return null
+}
+
 export const Map = () => {
   const session = useAtomValue(sessionAtom)
+  const [viewState, setViewState] = useState(
+    getInitialViewState({
+      latitude: session?.lat,
+      longitude: session?.lon,
+    })
+  )
+  const selectedPacket = useAtomValue(selectedPacketAtom)
+  const onlyShowSelected = useAtomValue(onlyShowSelectedAtom)
+  const followMode = useAtomValue(followModeAtom)
   const { height } = useViewportSize()
   const [heatmapInfo, setHeatMapInfo] = useState(null)
   const [zoom, setZoom] = useState(0)
   const darkMode = useAtomValue(darkModeAtom)
   const settings = useAtomValue(mapSettingsAtom)
-  const packets = useAtomValue(filteredPacketsAtom)
+  let packets = useAtomValue(filteredPacketsAtom)
+  let data = useAtomValue(dataAtom)
   const globeLayers = useMemo(
     () => createGlobeLayers(darkMode, settings, zoom),
     [darkMode, settings, zoom]
   )
+
+  if (onlyShowSelected && selectedPacket) {
+    data = dataForPacket(selectedPacket)
+    packets = packets.filter((p) => p.id === selectedPacket.id)
+  }
 
   const hexagonLayer = useHexagonLayer(
     packets,
@@ -88,7 +181,7 @@ export const Map = () => {
       setHeatMapInfo(info)
     }
   )
-  const animatedArcLayer = useAnimatedArcLayer(zoom)
+  const animatedArcLayer = useAnimatedArcLayer(data, zoom)
   const arcLayer = useArcLayer(zoom)
   const dataCenterLayer = useDataCenterLayer(settings)
   const cablesLayer = useCablesLayer()
@@ -105,6 +198,9 @@ export const Map = () => {
         position: 'relative',
       }}
     >
+      {followMode && (
+        <FollowCamera viewState={viewState} setViewState={setViewState} />
+      )}
       <LayerToggles />
       <Clients />
       <Clock />
@@ -120,13 +216,11 @@ export const Map = () => {
           dataCenterLayer,
         ]}
         effects={[lightingEffect(settings)]}
-        initialViewState={getInitialViewState({
-          latitude: session?.lat,
-          longitude: session?.lon,
-        })}
+        viewState={viewState}
         getTooltip={(t) => getTooltip(t, packets)}
         onViewStateChange={({ viewState }) => {
           setZoom(viewState.zoom)
+          setViewState(viewState)
         }}
       >
         {({ viewState, width, height }) => (

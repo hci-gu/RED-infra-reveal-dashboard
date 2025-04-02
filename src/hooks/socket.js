@@ -39,16 +39,30 @@ export const useSocket = (session) => {
       traceRoutes = _traces.reduce((acc, curr) => {
         curr.hops = curr.hops
           .filter((h) => h.latitude !== 0 && h.longitude !== 0)
-          .map((h) => ({
-            ...h,
-            lat: h.latitude,
-            lon: h.longitude,
-          }))
+          .map((h) => {
+            const duration =
+              h.timings.reduce((acc, curr) => acc + curr, 0) / h.timings.length
+            return {
+              ...h,
+              duration,
+              lat: h.latitude,
+              lon: h.longitude,
+            }
+          })
         acc[curr.domain] = curr
 
         return acc
       }, {})
-      // console.log(JSON.stringify(Object.values(traceRoutes), null, 2))
+
+      // create sorted list of hosts with most hops
+      const hosts = Object.keys(traceRoutes).sort(
+        (a, b) => traceRoutes[b].hops.length - traceRoutes[a].hops.length
+      )
+      // console.log(
+      //   hosts
+      //     .map((h) => `${traceRoutes[h].domain}: ${traceRoutes[h].hops.length}`)
+      //     .join('\n')
+      // )
 
       setTraceRoutes(Object.values(traceRoutes))
     }

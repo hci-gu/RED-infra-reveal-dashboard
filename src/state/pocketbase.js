@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useAtom } from 'jotai'
 
-export const pb = new PocketBase('http://192.168.10.200:8090')
+export const pb = new PocketBase(import.meta.env.VITE_API_URL)
 pb.admins.authWithPassword('admin@email.com', 'password123')
 
 export const useSessions = () => {
